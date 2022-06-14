@@ -11,9 +11,13 @@ import Patients from './components/Patients'
 import Medications from './components/Medications'
 import MedicationItem from './components/MedicationItem'
 import NavBar from "./components/NavBar"
+import NewMedication from './components/NewMedication';
+import AddDoctor from './components/AddDoctor'
 
 function App() {
   const [patient, setPatient] = useState(null)
+  const [medications, setMedications] = useState([]);
+  const [doctors, setDoctors] = useState([]);
   // const [patients, setPatients] = useState([])
   // const [doctor, setDoctor] = useState([])
   // const [medications, setMedications] = useState([])
@@ -27,6 +31,23 @@ function App() {
       }
     });
 }, []);
+
+useEffect(() => {
+  fetch("/my_medications").then((r) => {
+      if (r.ok) {
+          r.json().then((medications) => setMedications(medications));
+      }
+  });
+}, []);
+
+useEffect(() => {
+  fetch("/my_doctors").then((r) => {
+      if (r.ok) {
+          r.json().then((doctors) => setDoctors(doctors));
+      }
+  });
+}, []);
+
 
 // useEffect(() => {
 //   fetch("/doctors").then((r) => {
@@ -80,17 +101,23 @@ return (
       <Route
         exact
         path="/"
-        element={<Home setPatient={setPatient} patient={patient} />}
+        element={<Home setPatient={setPatient} patient={patient} medications={medications} setMedications={setMedications} doctors={doctors} setDoctors={setDoctors}/>}
       />
-
-
       <Route
         path='/doctors/:id'
         element={<DoctorItem />}
       /> 
       <Route
+        path='/new_medication'
+        element={<NewMedication patient={patient} doctors={doctors} setDoctors={setDoctors}/>}
+      /> 
+      <Route
         path='/doctors'
         element={<Doctors />}
+      /> 
+      <Route
+        path='/add_doctor'
+        element={<AddDoctor patient={patient} />}
       /> 
       {/* <Route
         path='/patients/:id'

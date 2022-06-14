@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_10_191640) do
+ActiveRecord::Schema.define(version: 2022_06_13_204527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,18 +26,20 @@ ActiveRecord::Schema.define(version: 2022_06_10_191640) do
 
   create_table "medications", force: :cascade do |t|
     t.string "name"
-    t.string "dosage"
+    t.integer "dosage"
+    t.integer "frequency"
     t.text "instructions"
-    t.integer "count"
+    t.integer "initial_amount"
+    t.integer "remaining"
+    t.integer "refills"
+    t.integer "refills_remaining"
+    t.boolean "taken"
     t.datetime "fill_date"
     t.datetime "refill_date"
-    t.integer "refills"
-    t.boolean "taken"
     t.bigint "patient_id", null: false
     t.bigint "doctor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "frequency"
     t.index ["doctor_id"], name: "index_medications_on_doctor_id"
     t.index ["patient_id"], name: "index_medications_on_patient_id"
   end
@@ -49,9 +51,9 @@ ActiveRecord::Schema.define(version: 2022_06_10_191640) do
     t.string "image"
     t.integer "points"
     t.integer "level"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
   end
 
   add_foreign_key "medications", "doctors"

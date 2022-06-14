@@ -24,6 +24,7 @@ const Auth = ({ setPatient }) => {
                     setPatient(patient);
             });
                 } else {
+                    console.log(patient)
                     res.json().then((json) => setErrors(json.errors));
             }
         });

@@ -21,6 +21,10 @@ class PatientsController < ApplicationController
     patient = Patient.find_by(id: session[:patient_id])
     render json: patient.doctors
   end 
+
+  # def post_my_doctors
+  #   patient = Patient.find_by(id: session[:patient_id])
+    
   
   def my_medications
     patient = Patient.find_by(id: session[:patient_id])
@@ -72,6 +76,6 @@ class PatientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def patient_params
-      params.require(:patient).permit(:name, :username, :avatar, :image, :points, :level, :password)
+      params.permit(:name, :username, :avatar, :image, :points, :level, :password)
     end
 end

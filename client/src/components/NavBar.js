@@ -18,7 +18,10 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
 
 
         <div>
-        <NewMedication patient={patient} doctors={doctors} />
+        <Link to="/new_medication">Add New Medication
+        </Link>
+        <Link to="/add_Doctor">Add Doctor
+        </Link>
         <button type="button" onClick={logout}>logout</button>
         </div>
 

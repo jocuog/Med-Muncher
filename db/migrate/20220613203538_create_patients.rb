@@ -7,6 +7,7 @@ class CreatePatients < ActiveRecord::Migration[6.1]
       t.string :image
       t.integer :points
       t.integer :level
+      t.string :password_digest
 
       t.timestamps
     end

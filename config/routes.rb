@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   # Initialize authentication patient
   get'/me', to: 'patients#me'
   get '/my_doctors', to: 'patients#my_doctors'
+  # post '/my_doctors', to: 'patients#post_my_doctors'
   get '/my_medications', to: 'patients#my_medications'
 
-
-  # Login / Logout 
   post '/signup', to: 'patients#signup'
+  # Login / Logout 
   post '/login', to: 'sessions#login'
   delete '/logout', to: 'sessions#logout'
 

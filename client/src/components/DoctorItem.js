@@ -5,10 +5,10 @@ const DoctorItem = ({ doctors }) => {
 
     return (
         <div>
-            <h3>{name}</h3>
-            <h3>{location}</h3>
-            <h3>{phone}</h3>
-            <h3>{email}</h3>
+            <h3>Doc Name:{name}</h3>
+            <h3>Doc Loc:{location}</h3>
+            <h3>Doc Phone:{phone}</h3>
+            <h3>Doc Email:{email}</h3>
         </div>
     )
 }

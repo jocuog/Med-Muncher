@@ -44,7 +44,7 @@ const Home = ({ setPatient, patient }) => {
         <MedicationItem key={medications.id} medications={medications} setMedications={setMedications} />
     ));
     const doctorsList = doctors.map((doctors) => (
-        <DoctorItem key={doctors.id} doctors={doctors} setDoctors={setDoctors} />
+        <DoctorItem key={doctors.id} doctors={doctors} setDoctors={setDoctors}  />
     ));
 
     return (
@@ -55,17 +55,19 @@ const Home = ({ setPatient, patient }) => {
                 setDoctors={setDoctors}
                 doctors={doctors}
             />
-            <h2>{name}</h2>
-            <h2>{username}</h2>
-            <h2>{avatar}</h2>
-            <h2>{image}</h2>
-            <h2>{points}</h2>
-            <h2>{level}</h2>
+            <h2>Name:{name}</h2>
+            <h2>Username:{username}</h2>
+            <h2>avatar:{avatar}</h2>
+            <h2>image:{image}</h2>
+            <h2>points:{points}</h2>
+            <h2>level:{level}</h2>
             <div>
+            <br></br>
             {medicationsList}
+            <br></br>
             {doctorsList}
             </div>
-            <button type="button" onClick={logout}>logout</button>
+
         </div>
     )
 }
