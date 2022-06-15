@@ -12,6 +12,8 @@ const Auth = ({ setPatient }) => {
             name,
             username,
             password,
+            points: 0,
+            level: 1
         };
 
         fetch("/signup", {

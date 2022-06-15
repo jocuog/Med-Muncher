@@ -1,12 +1,10 @@
 import { useParams, useNavigate} from "react-router-dom";
 import { useState, useEffect } from 'react'
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const NewMedication = ({ patient })=> {
     const [selectedDoctor, setSelectedDoctor] = useState("")
     const [doctors, setDoctors] = useState([]);
-    const [fillDate, setFillDate] = useState(new Date())
     const [ newMedication, setNewMedication ] = useState({
         patient_id: patient.id,
         doctor_id: selectedDoctor,
@@ -15,15 +13,11 @@ const NewMedication = ({ patient })=> {
         frequency: 0,
         instructions: "",
         initial_amount: 0,
-        remaining:0,
         refills: 0,
-        refills_remaining: 0,
-        fill_date: fillDate,
-        // refill_date:
+        fill_date: 0,
+        refill_date: 0
 
     })
-
-    console.log(fillDate)
 
     const handleChange = (e) => {
         const { name,  value} = e.target
@@ -117,15 +111,6 @@ const NewMedication = ({ patient })=> {
                 onChange={handleChange}
                 value={newMedication.initial_amount} />
 
-            <label htmlFor="remaining">remaining</label>
-            <input
-                type="number"
-                step="1"
-                id="remaining"
-                name="remaining"
-                onChange={handleChange}
-                value={newMedication.remaining} />
-
             <label htmlFor="refills">refills</label>
             <input
                 type="number"
@@ -134,35 +119,24 @@ const NewMedication = ({ patient })=> {
                 name="refills"
                 onChange={handleChange}
                 value={newMedication.refills} />
-
-            <label htmlFor="refills_remaining">refills_remaining</label>
-            <input
-                type="number"
-                step="1"
-                id="refills_remaining"
-                name="refills_remaining"
-                onChange={handleChange}
-                value={newMedication.refills_remaining} />
-
+                
             <br></br>
 
-            <div >fill_date
-                <DatePicker 
-                // htmlFor="fill_date"
-                // id="fill_date"
-                // name="fill_date"
-                // value={newMedication.fill_date}
-                selected={fillDate} onChange={(date) => setFillDate(date)} />
-            
-            </div>
-
-            {/* <label htmlFor="taken">taken</label>
+            <label htmlFor="fill_date">fill_date</label>
             <input
-                type="boolean"
-                id="taken"
-                name="taken"
+                type="date"
+                id="fill_date"
+                name="fill_date"
                 onChange={handleChange}
-                value={newMedication.taken} /> */}
+                value={newMedication.fill_date} />
+
+            <label htmlFor="refill_date">refill_date</label>
+            <input
+                type="date"
+                id="refill_date"
+                name="refill_date"
+                onChange={handleChange}
+                value={newMedication.refill_date} />
 
             <button className="submit-button" type="submit" >Add Medication</button>
         </form>
