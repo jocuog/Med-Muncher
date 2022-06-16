@@ -29,10 +29,10 @@ const Login = ({setPatient}) => {
 
     return (
         <div>
-        <div className='login_card'>
-            <div>
-                <h2>Patient Login</h2>
-            </div>
+        <div class='nes-container is-dark with-title'>
+            {/* <div className="form"> */}
+                <h2 class='title'>Patient Login</h2>
+            {/* </div> */}
             <div>
                 <form onSubmit={onSubmit}>
                 {/* <div>
@@ -45,7 +45,8 @@ const Login = ({setPatient}) => {
                     />
                 </div> */}
                 <div>
-                    <label>Username</label>
+                    <label class='nes-field'>Username</label>
+                    <br></br>
                     <input
                         type="text"
                         placeholder="Enter new username..."
@@ -53,8 +54,10 @@ const Login = ({setPatient}) => {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
+                <br></br>
                 <div>
-                    <label>Password </label>
+                    <label class='nes-field'>Password </label>
+                    <br></br>
                     <input
                         type="password"
                         placeholder="Enter new password..."
@@ -63,7 +66,7 @@ const Login = ({setPatient}) => {
                     />
                 </div>
                 <button
-                    className="button-primary"
+                    class="nes-btn is-primary"
                     type="submit"
                     >Login
                 </button>

@@ -22,6 +22,8 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
         </Link>
         <Link to="/add_Doctor">Add Doctor
         </Link>
+        <Link to="/">Home
+        </Link>
         <button type="button" onClick={logout}>logout</button>
         </div>
 

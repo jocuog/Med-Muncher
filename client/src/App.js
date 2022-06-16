@@ -81,11 +81,13 @@ if (!patient) {
     <>
     
     <h1 className="mainhead">Med Muncher</h1>
-    <Auth setPatient={setPatient} />
+    
     <Login
       error={"please login"}
       setPatient={setPatient}
     />
+    <br></br>
+    <Auth setPatient={setPatient} />
     </>
   );
 }

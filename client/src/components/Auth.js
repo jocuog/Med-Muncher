@@ -1,3 +1,4 @@
+import { alignProperty } from "@mui/material/styles/cssUtils";
 import React, { useState } from "react";
 
 const Auth = ({ setPatient }) => {
@@ -34,14 +35,15 @@ const Auth = ({ setPatient }) => {
 
     return (
             <div>
-            <div className='login_card'>
-                <div>
-                    <h2>Create account</h2>
-                </div>
+            <div class='nes-container is-dark with-title'>
+                {/* <div className="form"> */}
+                    <h2 class='title' >Create account</h2>
+                {/* </div> */}
                 <div>
                     <form onSubmit={onSubmit}>
-                    <div>
+                    <div class='nes-field'>
                         <label>Name </label>
+                        
                         <input
                             type="text"
                             placeholder="Enter Name..."
@@ -49,8 +51,10 @@ const Auth = ({ setPatient }) => {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
-                    <div>
+                    <br></br>
+                    <div class='nes-field'>
                         <label>Username </label>
+                        
                         <input
                             type="text"
                             placeholder="Enter username..."
@@ -58,8 +62,10 @@ const Auth = ({ setPatient }) => {
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
-                    <div>
+                    <br></br>
+                    <div class='nes-field'>
                         <label>Password </label>
+                        
                         <input
                             type="password"
                             placeholder="Enter password..."
@@ -67,8 +73,9 @@ const Auth = ({ setPatient }) => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
+                    <br></br>
                     <button
-                        className="button-primary"
+                        class="nes-btn is-primary"
                         type="submit"
                         >Sign Up
                     </button>

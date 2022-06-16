@@ -80,6 +80,7 @@ const NewMedication = ({ patient })=> {
             <label htmlFor="dosage" className="form-text">Dosage</label>
             <input
                 type="number"
+                min='0'
                 step="1"
                 id="dosage"
                 name="dosage"
@@ -89,6 +90,7 @@ const NewMedication = ({ patient })=> {
             <label htmlFor="frequency">Frequency</label>
             <input
                 type="number"
+                min='0'
                 step="1"
                 id="frequency"
                 name="frequency"
@@ -106,6 +108,7 @@ const NewMedication = ({ patient })=> {
             <label htmlFor="initial_amount">initial_amount</label>
             <input
                 type="number"
+                min='0'
                 id="initial_amount"
                 name="initial_amount"
                 onChange={handleChange}
@@ -114,12 +117,13 @@ const NewMedication = ({ patient })=> {
             <label htmlFor="refills">refills</label>
             <input
                 type="number"
+                min='0'
                 step="1"
                 id="refills"
                 name="refills"
                 onChange={handleChange}
                 value={newMedication.refills} />
-                
+
             <br></br>
 
             <label htmlFor="fill_date">fill_date</label>

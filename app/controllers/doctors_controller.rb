@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-  # before_action :set_doctor, only: [:show, :update, :destroy]
+  before_action :set_doctor, only: [:show, :update, :destroy]
 
   # GET /doctors
   def index
@@ -46,6 +46,6 @@ class DoctorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def doctor_params
-      params.require(:doctor).permit(:name, :location, :phone, :email)
+      params.permit(:name, :location, :phone, :email)
     end
 end
