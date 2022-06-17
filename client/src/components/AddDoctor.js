@@ -47,43 +47,61 @@ const AddDoctor = ({patient}) => {
         
         return (
             <div>
+            <div class="nes-container is-dark with-title">
+            <h2 class="title">Add Doctor</h2>
                 <section>
+                    <div>
                     <form>
-                    <h2>Add Doctor</h2>
-                    <label htmlFor="name" className="form-text">Name</label>
+                    <div>
+                    <label htmlFor="name" class='nes-input'>Name</label>
+                    <br></br>
                         <input
                             type="text"
                             id="name"
                             name="name"
                             onChange={handleChange}
                             value={newDoctor.name} />
-                
-                    <label htmlFor="location" className="form-text">location</label>
+                        </div>
+
+                        <div>
+                        <label htmlFor="location" class='nes-input'>location</label>
+                        <br></br>
                         <input
                             type="text"
                             id="location"
                             name="location"
                             onChange={handleChange}
                             value={newDoctor.location} />
-                
-                    <label htmlFor="phone" className="form-text">phone</label>
+                        </div>
+
+                        <div>
+                        <label htmlFor="phone" class='nes-input'>phone</label>
+                        <br></br>
                         <input
                             type="text"
                             id="phone"
                             name="phone"
                             onChange={handleChange}
                             value={newDoctor.phone} />
-                
-                    <label htmlFor="email" className="form-text">email</label>
+                        </div>
+
+                        <div>
+                        <label htmlFor="email" class='nes-input'>email</label>
+                        <br></br>
                         <input
                             type="text"
                             id="email"
                             name="email"
                             onChange={handleChange}
                             value={newDoctor.email} />
-                        <button onClick={handleSubmit} className="submit-button" type="submit" >Add Doctor</button>
+                        </div>
+                        <br></br>
+                        <button onClick={handleSubmit} class="nes-btn is-primary" type="submit" >Add Doctor</button>
+                    
                     </form>
+                    </div>
                 </section>
+                </div>
             </div>
 
 

@@ -7,6 +7,8 @@ import MedicationItem from "./MedicationItem";
 import DoctorItem from "./DoctorItem";
 import NavBar from "./NavBar"
 
+
+
 const Home = ({ setPatient, patient }) => {
     const [medications, setMedications] = useState([]);
     const [doctors, setDoctors] = useState([]);
@@ -49,12 +51,14 @@ const Home = ({ setPatient, patient }) => {
 
     return (
         <div>
-            <NavBar
+        
+
+            {/* <NavBar
                 setPatient={setPatient}
                 patient={patient}
                 setDoctors={setDoctors}
                 doctors={doctors}
-            />
+            /> */}
             <Patients patient={patient} setPatient={setPatient} />
             {/* <h2>Name:{name}</h2>
             <h2>Username:{username}</h2>
@@ -62,13 +66,13 @@ const Home = ({ setPatient, patient }) => {
             <h2>image:{image}</h2>
             <h2>points:{points}</h2>
             <h2>level:{level}</h2> */}
-            <div>
+            <div class="nes-container is-dark with-title is-centered">
+        <h2 class="title">Medications</h2>
             <br></br>
             {medicationsList}
             <br></br>
             {doctorsList}
             </div>
-
         </div>
     )
 }

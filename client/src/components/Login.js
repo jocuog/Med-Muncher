@@ -28,8 +28,8 @@ const Login = ({setPatient}) => {
     }
 
     return (
-        <div>
-        <div class='nes-container is-dark with-title'>
+        <div >
+        <div style={{ backgroundColor: 'red'}} class='nes-container is-dark with-title'>
             {/* <div className="form"> */}
                 <h2 class='title'>Patient Login</h2>
             {/* </div> */}

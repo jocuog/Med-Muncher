@@ -17,14 +17,16 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
     return (
 
 
-        <div>
-        <Link to="/new_medication">Add New Medication
+        <div class="nes-container is-dark with-title">
+        <Link  style={{ padding: 10 }} to="/new_medication">|Add New Medication|
         </Link>
-        <Link to="/add_Doctor">Add Doctor
+        <Link style={{ padding: 10 }} to="/add_Doctor">|Add Doctor|
         </Link>
-        <Link to="/">Home
+        <Link style={{ padding: 10 }} to="/">|Home|
         </Link>
-        <button type="button" onClick={logout}>logout</button>
+        <Link style={{ padding: 10 }} to="/edit-patient">|Edit Profile|
+        </Link>
+        <button class="nes-btn is-primary" type="button" onClick={logout}>logout</button>
         </div>
 
     )

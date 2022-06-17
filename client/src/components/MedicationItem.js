@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import Countdown from "react-countdown";
 import { useNavigate, useParams } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import { SpriteAnimator } from 'react-sprite-animator'
+
+
 
 const Completionist = () => 
     <div>
@@ -27,14 +31,22 @@ const MedicationItem = ({ medications, patient }) => {
     let navigate = useNavigate();
 
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        
         if (completed) {
           // Render a complete state
-            return <MedicationItem  medications={medications} patient={patient}/>;
+            return (
+            <>      
+            <Popup trigger={<button class="nes-balloon from-left" > Click to open popup </button>} 
+             position="right center">
+              <div>GeeksforGeeks</div>
+              <button class="nes-balloon from-left" onClick={handleCompleteCount}>Click here</button>
+            </Popup></>
+            )              
         } else {
           // Render a countdown
             return (
             <span>
-                {days}:{hours}:{minutes}:{seconds}
+                Days{days}:Hours{hours}:Minutes{minutes}:Seconds{seconds}
             </span>
             );
         }
@@ -67,16 +79,17 @@ const MedicationItem = ({ medications, patient }) => {
     const handleCompleteCount = () => {
     if (localStorage.getItem("end_date") != null)
                 localStorage.removeItem("end_date");
-                alert(`Take ${dosage} of ${name}`)
+                // alert(`Take ${dosage} of ${name}`)
                 incrementPoints()
                 decrementMeds()
+
                 window.location.reload(false);
     }
 
     const incrementPoints = () => {
-        setPatientPoints(patientPoints + 10)
+        setPatientPoints((patientPoints) => patientPoints + 10)
         if (patientPoints%100 === 0) {
-            setPatientsLevel(patientsLevel + 1)
+            setPatientsLevel((patientsLevel) => patientsLevel + 1)
         }
         return patientPoints
     }
@@ -88,12 +101,11 @@ const MedicationItem = ({ medications, patient }) => {
                     method: "DELETE",
                 });
             } else {
-                setRemainingDoses(remainingDoses - dosage)
+                setRemainingDoses((remainingDoses) => remainingDoses - dosage)
     }
 
 }
 
-    console.log(patientPoints, remainingDoses, medications)
 
 
     fetch(`/patients/${patient.id}`, {
@@ -129,8 +141,9 @@ const MedicationItem = ({ medications, patient }) => {
 
 
     return (
-        <div>
-        <Countdown
+        <>
+        <div class="nes-container is-dark with-title is-centered"> 
+               <Countdown
             date={data.date + data.delay}
             renderer={renderer}
             onStart={(delta) => {
@@ -141,7 +154,20 @@ const MedicationItem = ({ medications, patient }) => {
                     JSON.stringify(data.date + data.delay)
                     );
             }}
-            onComplete={handleCompleteCount} />
+            // onComplete={handleCompleteCount}
+             />
+        <h2 class="title">{name}</h2>
+        <div class="nes-table-responsive">
+
+
+ 
+
+
+            {/* <SpriteAnimator
+            sprite="../assets/DinoSprites1.png"
+            width={100}
+            height={100}
+            /> */}
 
             {/* //     () => { 
             //     if (localStorage.getItem("end_date") != null)
@@ -153,8 +179,7 @@ const MedicationItem = ({ medications, patient }) => {
             {/* <Countdown date={Date.now() + (frequency)*10000} onComplete={() => alert(`Take ${dosage} pills`) } >
                 <Completionist />
             </Countdown>, */}
-
-            <br></br>
+            <table class="nes-table is-bordered is-dark" >
             <h3>Med name:{name}</h3>
             <h3>Med dosage:{dosage}</h3>
             <h3>Med frequency:{frequency}</h3>
@@ -167,7 +192,12 @@ const MedicationItem = ({ medications, patient }) => {
             <h3>Med refills left:{refills}</h3>
             <h3>Med taken:{taken}</h3>
             <br></br>
-        </div>
+            </table>
+            </div>
+            
+            </div>
+            <br></br>
+        </>
     )
 }
 

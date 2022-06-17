@@ -13,6 +13,7 @@ import MedicationItem from './components/MedicationItem'
 import NavBar from "./components/NavBar"
 import NewMedication from './components/NewMedication';
 import AddDoctor from './components/AddDoctor'
+import EditPatient from './components/EditPatient';
 
 function App() {
   const [patient, setPatient] = useState(null)
@@ -95,10 +96,10 @@ if (!patient) {
 
 return (
   <>
-    {/* <NavBar
+    <NavBar
       setPatient={setPatient}
       patient={patient}
-    /> */}
+    />
     <Routes>
       <Route
         exact
@@ -120,6 +121,10 @@ return (
       <Route
         path='/add_doctor'
         element={<AddDoctor patient={patient} />}
+      /> 
+      <Route
+        path='/edit-patient'
+        element={<EditPatient patient={patient} />}
       /> 
       {/* <Route
         path='/patients/:id'
