@@ -15,13 +15,12 @@ const Completionist = () =>
 
 const getLocalStorageValue = (s) => localStorage.getItem(s);
 
-const MedicationItem = ({ medications, patient }) => {
+const MedicationItem = ({ medications, patient, setTextBubble }) => {
     const { name, dosage, frequency, instructions, initial_amount, fill_date, refill_date, refills, refills_remaining, taken} = medications
     const { points, level} = patient
     const [patientPoints, setPatientPoints] = useState(points)
     const [patientsLevel, setPatientsLevel] = useState(level)
     const [remainingDoses, setRemainingDoses] = useState(initial_amount)
-    const [Refresh, setRefresh] = useState(false)
 
 
     const [data, setData] = useState(
@@ -34,13 +33,22 @@ const MedicationItem = ({ medications, patient }) => {
         
         if (completed) {
           // Render a complete state
+          
             return (
-            <>      
-            <Popup trigger={<button class="nes-balloon from-left" > Click to open popup </button>} 
-             position="right center">
-              <div>GeeksforGeeks</div>
-              <button class="nes-balloon from-left" onClick={handleCompleteCount}>Click here</button>
-            </Popup></>
+            <> 
+               {/* <button  class="nes-balloon from-right">Click here</button> */}
+             <button style={{ position: 'relative', bottom: '50px'}} onClick={handleCompleteCount} class="nes-balloon from-right" > 
+             Time To take {dosage} of {name}.
+            <br></br>
+            {instructions}
+             <br></br>
+             - Dr. {medications.doctor.name}
+             <br></br>
+             <button class="nes-btn is-success is-small" > I did it! </button>
+             </button> 
+              
+            <i style={{ position: 'relative', top: '135px'}} class="nes-bcrikko"></i> 
+            </>
             )              
         } else {
           // Render a countdown
@@ -82,8 +90,8 @@ const MedicationItem = ({ medications, patient }) => {
                 // alert(`Take ${dosage} of ${name}`)
                 incrementPoints()
                 decrementMeds()
-
-                window.location.reload(false);
+                setTextBubble(true)
+                // window.location.reload(false);
     }
 
     const incrementPoints = () => {
@@ -138,12 +146,15 @@ const MedicationItem = ({ medications, patient }) => {
 
 
 
-
+console.log(medications.doctor.name)
 
     return (
         <>
+        
         <div class="nes-container is-dark with-title is-centered"> 
-               <Countdown
+        <h2 class="title">{name}</h2>
+            <div class="nes-container is-rounded is-dark">
+            <Countdown
             date={data.date + data.delay}
             renderer={renderer}
             onStart={(delta) => {
@@ -156,47 +167,40 @@ const MedicationItem = ({ medications, patient }) => {
             }}
             // onComplete={handleCompleteCount}
              />
-        <h2 class="title">{name}</h2>
-        <div class="nes-table-responsive">
-
-
- 
-
-
-            {/* <SpriteAnimator
-            sprite="../assets/DinoSprites1.png"
-            width={100}
-            height={100}
-            /> */}
-
-            {/* //     () => { 
-            //     if (localStorage.getItem("end_date") != null)
-            //         localStorage.removeItem("end_date");
-            //         alert(`Take ${dosage} of ${name}`)
-            // 
-            
-    
-            {/* <Countdown date={Date.now() + (frequency)*10000} onComplete={() => alert(`Take ${dosage} pills`) } >
-                <Completionist />
-            </Countdown>, */}
-            <table class="nes-table is-bordered is-dark" >
-            <h3>Med name:{name}</h3>
-            <h3>Med dosage:{dosage}</h3>
-            <h3>Med frequency:{frequency}</h3>
-            <h3>Med instructions:{instructions}</h3>
-            <h3>Med initial_amount:{initial_amount}</h3>
-            <h3>Med refills:{refills}</h3>
-            <h3>Med refills_remaining:{refills_remaining}</h3>
-            <h3>Med fill date:{fill_date}</h3>
-            <h3>Med refill date:{refill_date}</h3>
-            <h3>Med refills left:{refills}</h3>
-            <h3>Med taken:{taken}</h3>
-            <br></br>
-            </table>
             </div>
-            
+            <div className="med-doc-container">
+             <div class="nes-container is-rounded is-dark with-title is-centered">
+             <div class='title'>Medication</div>
+            <h3>Medicine:{name}</h3>
+            {/* <h1>{medications.doctor}</h1> */}
+            <h3>Dosage:{dosage}</h3>
+            <h3>Frequency(Days):{frequency}</h3>
+            <h3>Instructions:{instructions}</h3>
+            <h3>Remaining:{initial_amount}</h3>
+            {/* <h3>Med refills:{refills}</h3>
+            <h3>Med refills_remaining:{refills_remaining}</h3> */}
+            <h3>Fill Date:{fill_date}</h3>
+            <h3>Refill Date:{refill_date}</h3>
             </div>
+            <div class="nes-container is-rounded is-dark with-title is-centered">
+            <div class='title'>Doctor</div>
+            {/* <br></br> */}
+            <i class="nes-icon is-small heart"></i>
+            <i class="nes-icon is-small heart"></i>
+            <i class="nes-icon is-small heart"></i>
+            <i class="nes-icon is-small heart"></i>
+            <i class="nes-icon is-small heart"></i>
+                <h3>Name:{medications.doctor.name}</h3>
             <br></br>
+                <h3>Location:{medications.doctor.location}</h3>
+            <br></br>
+                <h3>Phone:{medications.doctor.phone}</h3>
+            <br></br>
+                <h3>Email:{medications.doctor.email}</h3>
+            <br></br>
+            </div>
+            </div>
+            </div>
         </>
     )
 }

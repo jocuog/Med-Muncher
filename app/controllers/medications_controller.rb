@@ -10,7 +10,7 @@ class MedicationsController < ApplicationController
 
   # GET /medications/1
   def show
-    render json: @medication
+    render json: @medication 
   end
 
   # POST /medications

@@ -12,6 +12,7 @@ import NavBar from "./NavBar"
 const Home = ({ setPatient, patient }) => {
     const [medications, setMedications] = useState([]);
     const [doctors, setDoctors] = useState([]);
+    const [textBubble, setTextBubble] = useState(false);
     // const { name, username, avatar, image, points, level } = patient
 
     useEffect(() => {
@@ -43,10 +44,10 @@ const Home = ({ setPatient, patient }) => {
 
 
     const medicationsList = medications.map((medications) => (
-        <MedicationItem key={medications.id} medications={medications} setMedications={setMedications} patient={patient} />
+        <MedicationItem key={medications.id} medications={medications} setMedications={setMedications} patient={patient} setTextBubble={setTextBubble}/>
     ));
     const doctorsList = doctors.map((doctors) => (
-        <DoctorItem key={doctors.id} doctors={doctors} setDoctors={setDoctors}  />
+        <DoctorItem key={doctors.id} doctors={doctors} setDoctors={setDoctors}   />
     ));
 
     return (
@@ -59,7 +60,7 @@ const Home = ({ setPatient, patient }) => {
                 setDoctors={setDoctors}
                 doctors={doctors}
             /> */}
-            <Patients patient={patient} setPatient={setPatient} />
+            <Patients patient={patient} setPatient={setPatient} textBubble={textBubble} setTextBubble={setTextBubble}/>
             {/* <h2>Name:{name}</h2>
             <h2>Username:{username}</h2>
             <h2>avatar:{avatar}</h2>
@@ -70,8 +71,8 @@ const Home = ({ setPatient, patient }) => {
         <h2 class="title">Medications</h2>
             <br></br>
             {medicationsList}
-            <br></br>
-            {doctorsList}
+            {/* <br></br>
+            {doctorsList} */}
             </div>
         </div>
     )

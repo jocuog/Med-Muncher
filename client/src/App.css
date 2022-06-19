@@ -22,3 +22,18 @@ html {
 .container {
   max-width: 50vw;
 }
+
+.med-doc-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.bubble-text {
+  color: black;
+}
+
+.nav-bar {
+align-items: center;
+
+}

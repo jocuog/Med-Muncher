@@ -16,8 +16,9 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
 
     return (
 
-
-        <div class="nes-container is-dark with-title">
+        <div >
+        <div className='navbar' class="nes-container is-rounded with-title">
+        <div class='title'>Navigation</div>
         <Link  style={{ padding: 10 }} to="/new_medication">|Add New Medication|
         </Link>
         <Link style={{ padding: 10 }} to="/add_Doctor">|Add Doctor|
@@ -27,6 +28,9 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
         <Link style={{ padding: 10 }} to="/edit-patient">|Edit Profile|
         </Link>
         <button class="nes-btn is-primary" type="button" onClick={logout}>logout</button>
+        
+        </div>
+        {/* <br></br> */}
         </div>
 
     )

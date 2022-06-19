@@ -120,7 +120,6 @@ const MedCountdown = ({medications, patient}) => {
     
     
 
-
 }
 
 export default MedCountdown;
