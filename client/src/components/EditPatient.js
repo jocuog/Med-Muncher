@@ -5,7 +5,7 @@ import { SpriteAnimator } from 'react-sprite-animator'
 import Spritesheet from 'react-responsive-spritesheet';
 
 
-const EditPatient = ({patient}) => {
+const EditPatient = ({patient, onUpdatePatient}) => {
     const { username, avatar, image } = patient
     const [patientData, setPatientData] = useState({
         username,
@@ -40,7 +40,8 @@ const EditPatient = ({patient}) => {
         }).then((res) => {
             if (res.ok) {
                 res.json().then((user) => {
-                    console.log("success");
+                    console.log("success",user);
+                    onUpdatePatient(user)
                     navigate('/')
                 });
             } else {

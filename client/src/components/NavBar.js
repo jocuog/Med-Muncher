@@ -16,18 +16,23 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
 
     return (
 
-        <div >
-        <div className='navbar' class="nes-container is-rounded with-title">
+        <div  className='navbar' >
+        <div class="nes-container is-rounded with-title">
         <div class='title'>Navigation</div>
-        <Link  style={{ padding: 10 }} to="/new_medication">|Add New Medication|
+
+            <Link class="nes-container is-rounded is-dark" style={{ padding: 15 }} to="/">|HOME|
         </Link>
-        <Link style={{ padding: 10 }} to="/add_Doctor">|Add Doctor|
+
+        <Link class="nes-container is-rounded is-dark" style={{ padding: 15 }} to="/new_medication">|ADD NEW MEDICATION|
         </Link>
-        <Link style={{ padding: 10 }} to="/">|Home|
+        
+         <Link class="nes-container is-rounded is-dark" style={{ padding: 15 }} to="/add_Doctor">|ADD DOCTOR|
         </Link>
-        <Link style={{ padding: 10 }} to="/edit-patient">|Edit Profile|
+    
+        <Link class="nes-container is-rounded is-dark" style={{ padding: 15 }} to="/edit-patient">|EDIT PROFILE|
         </Link>
-        <button class="nes-btn is-primary" type="button" onClick={logout}>logout</button>
+
+        <button  style={{ margin: 15 }} class="nes-btn is-primary" type="button" onClick={logout}>LOGOUT</button>
         
         </div>
         {/* <br></br> */}

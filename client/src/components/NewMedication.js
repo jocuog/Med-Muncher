@@ -36,7 +36,7 @@ const NewMedication = ({ patient })=> {
         }).then((res) => {
             if (res.ok) {
                 res.json().then((user) => {
-                console.log("success");
+                console.log("success", newMedication);
                 navigate('/')
                 });
             } else {
@@ -53,128 +53,151 @@ const NewMedication = ({ patient })=> {
         });
     }, []);
 
-    
+    console.log(newMedication)
+
     return (
-        <div>
-        <div class="nes-container is-dark with-title"> 
-        <h2 class="title">Add Medication</h2>
-        <section>
-        <div>
-        <form className="form" autoComplete="off" onSubmit={handleSubmit}>
-            <div>
+    <div className='new-medication'>
+
+    {/* <section> */}
+
+    <form>
+
+        <div class="nes-container is-success is-rounded is centered" >
+
+            <h2 class="title">NEW MEDICATION</h2>
+
             
-            <label htmlFor="name" class='nes-input'>Name</label>
-            <br></br>
-            <input
-                type="text"
-                id="name"
-                name="name"
-                onChange={handleChange}
-                value={newMedication.name} />
-            </div>
 
-            <div>
-            <label htmlFor="doctor_id" class='nes-input'>Doctor</label>
-            <br></br>
-            <select
-                name="doctor_id"
-                id="doctor_id"
-                onChange={handleChange}
-                value={newMedication.doctor_id} >
-                <option value="Select Doctor" >Select Doctor</option>
-                {doctors.map((doctor) => {return <option key={doctor.id} value={doctor.id} >{doctor.name}</option>})}
-            </select>
-            </div>
+            <div className='new-med-container' >
 
-            <div>
-            <label htmlFor="dosage" class='nes-input'>Dosage</label>
-            <br></br>
-            <input
-                type="number"
-                min='0'
-                step="1"
-                id="dosage"
-                name="dosage"
-                onChange={handleChange}
-                value={newMedication.dosage} />
-            </div>    
+                <div className='new-med-sub-container'>
+        
+                    <div className="form" autoComplete="off" onSubmit={handleSubmit}>
+                        <div className='med-form'>
+                            <div>
+            
+                                <label className="form-text" htmlFor="name" >NAME</label>
+                                <br></br>
+                                    <input
+                                        placeholder="ENTER NAME..."
+                                        class="nes-input is-success"
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        onChange={handleChange}
+                                        value={newMedication.name} />
+                                </div>
+
+                                <div>
+                                <label className="form-text" htmlFor="instructions" >INSTRUCTIONS</label>
+                                <br></br>
+                                    <input
+                                        placeholder="INSTRUCTIONS..."
+                                        class="nes-input is-success"
+                                        type="text"
+                                        id="instructions"
+                                        name="instructions"
+                                        onChange={handleChange}
+                                        value={newMedication.instructions} />
+                                </div>    
+
+                                <div>
+                                <label className="form-text" htmlFor="dosage" >DOSAGE</label>
+                                <br></br>
+                                <input
+                                    class="nes-input is-success"
+                                    type="number"
+                                    min='0'
+                                    step="1"
+                                    id="dosage"
+                                    name="dosage"
+                                    onChange={handleChange}
+                                    value={newMedication.dosage} />
+                                </div>    
+                        
+                                <div>
+                                <label className="form-text" htmlFor="frequency" >FREQUENCY</label>
+                                <br></br>
+                                <input
+                                    class="nes-input is-success"
+                                    type="number"
+                                    min='0'
+                                    step="1"
+                                    id="frequency"
+                                    name="frequency"
+                                    onChange={handleChange}
+                                    value={newMedication.frequency} />
+                                </div>    
     
-            <div>
-            <label htmlFor="frequency" class='nes-input'>Frequency</label>
-            <br></br>
-            <input
-                type="number"
-                min='0'
-                step="1"
-                id="frequency"
-                name="frequency"
-                onChange={handleChange}
-                value={newMedication.frequency} />
-            </div>    
+                                <div>
+                                <label className="form-text" htmlFor="initial_amount" >STARTING QUANTITY</label>
+                                <br></br>
+                                <input
+                                    class="nes-input is-success"
+                                    type="number"
+                                    min='0'
+                                    id="initial_amount"
+                                    name="initial_amount"
+                                    onChange={handleChange}
+                                    value={newMedication.initial_amount} />
+                                </div>
+
+                            </div>
+
+                    </div>
     
-            <div>
-            <label htmlFor="instructions" class='nes-input'>instructions</label>
-            <br></br>
-            <input
-                type="text"
-                id="instructions"
-                name="instructions"
-                onChange={handleChange}
-                value={newMedication.instructions} />
-            </div>    
+                </div>
 
-            <div>
-            <label htmlFor="initial_amount" class='nes-input'>initial_amount</label>
-            <br></br>
-            <input
-                type="number"
-                min='0'
-                id="initial_amount"
-                name="initial_amount"
-                onChange={handleChange}
-                value={newMedication.initial_amount} />
             </div>
 
-            <div>
-            <label htmlFor="refills" class='nes-input'>refills</label>
-            <br></br>
-            <input
-                type="number"
-                min='0'
-                step="1"
-                id="refills"
-                name="refills"
-                onChange={handleChange}
-                value={newMedication.refills} />
-            </div>
-
-            <div>
-            <label htmlFor="fill_date" class='nes-input'>fill_date</label>
-            <br></br>
-            <input
-                type="date"
-                id="fill_date"
-                name="fill_date"
-                onChange={handleChange}
-                value={newMedication.fill_date} />
-            </div>    
-
-            <div>
-            <label htmlFor="refill_date" class='nes-input'>refill_date</label>
-            <br></br>
-            <input
-                type="date"
-                id="refill_date"
-                name="refill_date"
-                onChange={handleChange}
-                value={newMedication.refill_date} />
-            </div>
-            <br></br>
-            <button className="submit-button" type="submit" >Add Medication</button>
-        </form>
         </div>
-    </section>
-    </div>
+
+            <div className="med-form2" >
+                <div >
+                    <label htmlFor="doctor_id" >Doctor</label>
+                    <br></br>
+                    <select
+                        class="nes-input is-warning"
+                        name="doctor_id"
+                        id="doctor_id"
+                        onChange={handleChange}
+                        value={newMedication.doctor_id} >
+                        <option value="Select Doctor" >Select Doctor</option>
+                        {doctors.map((doctor) => {return <option key={doctor.id} value={doctor.id} >{doctor.name}</option>})}
+                    </select>
+                </div>
+
+                <div>
+                    <label htmlFor="fill_date" >Fill Date</label>
+                    <br></br>
+                    <input
+                        class="nes-input is-warning"
+                        type="text"
+                        id="fill_date"
+                        name="fill_date"
+                        onChange={handleChange}
+                        value={newMedication.fill_date} />
+                </div>    
+
+                <div>
+                <label htmlFor="refill_date" >Refill Date</label>
+                <br></br>
+                <input
+                    class="nes-input is-warning"
+                    type="text"
+                    id="refill_date"
+                    name="refill_date"
+                    onChange={handleChange}
+                    value={newMedication.refill_date} />
+                </div>
+
+                <br></br>
+            
+            </div>
+
+                <button className="submit-button" type="submit" >ADD <br></br><h1>?</h1>MEDICATION</button>
+            </form> 
+        {/* </section> */}
     </div>
     )
 

@@ -3,6 +3,7 @@ import Countdown from "react-countdown";
 import { useNavigate, useParams } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import { SpriteAnimator } from 'react-sprite-animator'
+import { startOfDay } from "date-fns";
 
 
 
@@ -15,7 +16,7 @@ const Completionist = () =>
 
 const getLocalStorageValue = (s) => localStorage.getItem(s);
 
-const MedicationItem = ({ medications, patient, setTextBubble }) => {
+const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, onUpdateMeds, onDeleteMeds }) => {
     const { name, dosage, frequency, instructions, initial_amount, fill_date, refill_date, refills, refills_remaining, taken} = medications
     const { points, level} = patient
     const [patientPoints, setPatientPoints] = useState(points)
@@ -37,14 +38,14 @@ const MedicationItem = ({ medications, patient, setTextBubble }) => {
             return (
             <> 
                {/* <button  class="nes-balloon from-right">Click here</button> */}
-             <button style={{ position: 'relative', bottom: '50px'}} onClick={handleCompleteCount} class="nes-balloon from-right" > 
+             <button style={{ position: 'relative', bottom: '50px'}}  class="nes-balloon from-right" > 
              Time To take {dosage} of {name}.
             <br></br>
             {instructions}
              <br></br>
              - Dr. {medications.doctor.name}
              <br></br>
-             <button class="nes-btn is-success is-small" > I did it! </button>
+             <button class="nes-btn is-success is-small" onClick={handleCompleteCount}> I did it! </button>
              </button> 
               
             <i style={{ position: 'relative', top: '135px'}} class="nes-bcrikko"></i> 
@@ -62,7 +63,10 @@ const MedicationItem = ({ medications, patient, setTextBubble }) => {
 
     const wantedDelay = 60000; //10 ms
 
+ 
+
     useEffect(() => {
+
         const savedDate = getLocalStorageValue("end_date");
             if (savedDate != null && !isNaN(savedDate)) {
                 const currentTime = Date.now();
@@ -77,44 +81,110 @@ const MedicationItem = ({ medications, patient, setTextBubble }) => {
             } else {
             //No update the end date with the current date
             setData({ date: currentTime, delay: delta });
-
+                    
             }
         }  
-    
-
+        
     },[] );
+
+    const handleDelete = (medications) => {
+        fetch(`medications/${medications.id}`, {
+            method: "DELETE"
+        })
+        onDeleteMeds(medications) 
+        console.log(medications)
+    }
     
     const handleCompleteCount = () => {
     if (localStorage.getItem("end_date") != null)
                 localStorage.removeItem("end_date");
+                    setPatientPoints((patientPoints) => patientPoints + 10)
+
+        //             const savedDate = getLocalStorageValue("end_date");
+        //     if (savedDate != null && !isNaN(savedDate)) {
+        //         const currentTime = Date.now();
+        //         const delta = parseInt(savedDate, 10) - currentTime;
+        //   //Do you reach the end?
+        //     if (delta > wantedDelay) {
+        //     //Yes we clear uour saved end date
+            
+        //     if (localStorage.getItem("end_date").length > 0)
+        //         localStorage.removeItem("end_date")
+                
+        //     } else {
+            // No update the end date with the current date
+            // setData({ date: Date.now(), delay: (frequency)*10000 });
+            // <Countdown
+            // date={data.date + data.delay}
+            // renderer={renderer}
+            // autoStart='true'
+            // onStart={(delta) => {
+            // //Save the end date
+            //     if (localStorage.getItem("end_date") == null)
+            //         localStorage.setItem(
+            //         "end_date",
+            //         JSON.stringify(data.date + data.delay)
+            //         );
+            // }} />
+
+                    if (patientPoints%100 === 0) {
+                        setPatientsLevel((patientsLevel) => patientsLevel + 1)
+                    }
+
+                    if (remainingDoses <= (dosage) + 1)
+                        
+                        setRemainingDoses((remainingDoses) => remainingDoses - dosage)
+                        setTextBubble(2)
+                    if (remainingDoses <= 1) {
+                        // alert('time to get more');
+                        fetch(`medications/${medications.id}`, {
+                            method: "DELETE"
+                        })
+                        // .then(res => res.json())
+                        // .then(
+                           onDeleteMeds(medications) 
+                        // )
+                        
+                    } else {
+                        setTextBubble(1)
+                        setRemainingDoses((remainingDoses) => remainingDoses - dosage)
+            }
+
                 // alert(`Take ${dosage} of ${name}`)
-                incrementPoints()
-                decrementMeds()
-                setTextBubble(true)
+                // incrementPoints()
+                // decrementMeds()
+                // setTextBubble(1)
                 // window.location.reload(false);
     }
 
-    const incrementPoints = () => {
-        setPatientPoints((patientPoints) => patientPoints + 10)
-        if (patientPoints%100 === 0) {
-            setPatientsLevel((patientsLevel) => patientsLevel + 1)
-        }
-        return patientPoints
-    }
-
-    const decrementMeds = () => {
-            if (remainingDoses === 1) {
-                alert('time to get more')
-                fetch(`medications/${medications.id}`, {
-                    method: "DELETE",
-                });
-            } else {
-                setRemainingDoses((remainingDoses) => remainingDoses - dosage)
-    }
-
-}
+//     const incrementPoints = () => {
+//         setPatientPoints((patientPoints) => patientPoints + 10)
+//         if (patientPoints%100 === 0) {
+//             setPatientsLevel((patientsLevel) => patientsLevel + 1)
+//         }
+//         return patientPoints
+//     }
 
 
+    
+//     const decrementMeds = () => {
+//           if (remainingDoses <= 0) {
+//                 // alert('time to get more');
+//                 fetch(`medications/${medications.id}`, {
+//                     method: "DELETE"
+//                 })
+//                 // .then(res => res.json())
+//                 // .then(
+//                    onDeleteMeds(medications) 
+//                 // )
+                
+//             } else {
+//                 setRemainingDoses((remainingDoses) => remainingDoses - dosage)
+//     }
+
+// }
+
+useEffect(() => {
 
     fetch(`/patients/${patient.id}`, {
         method: "PATCH",
@@ -123,12 +193,16 @@ const MedicationItem = ({ medications, patient, setTextBubble }) => {
     }).then((res) => {
         if (res.ok) {
             res.json().then((user) => {
-                console.log("success", patientPoints);
+                console.log("success", patientPoints, user);
+                onUpdateScore(user)
             });
         } else {
             res.json().then((json) => console.log("wrong"));
         }
-});                 
+});                
+}, [patientPoints, patientsLevel, patient.id, ]) 
+
+useEffect(() => {
 
     fetch(`/medications/${medications.id}`, {
         method: "PATCH",
@@ -137,16 +211,14 @@ const MedicationItem = ({ medications, patient, setTextBubble }) => {
     }).then((res) => {
         if (res.ok) {
             res.json().then((user) => {
-                console.log("success", remainingDoses);
+                console.log("success", remainingDoses, user);
+                onUpdateMeds(user)
             });
         } else {
             res.json().then((json) => console.log("wrong", medications.id));
         }
 });                 
-
-
-
-console.log(medications.doctor.name)
+}, [remainingDoses, medications.id]);
 
     return (
         <>
@@ -157,6 +229,7 @@ console.log(medications.doctor.name)
             <Countdown
             date={data.date + data.delay}
             renderer={renderer}
+            autoStart='true'
             onStart={(delta) => {
             //Save the end date
                 if (localStorage.getItem("end_date") == null)
@@ -181,6 +254,7 @@ console.log(medications.doctor.name)
             <h3>Med refills_remaining:{refills_remaining}</h3> */}
             <h3>Fill Date:{fill_date}</h3>
             <h3>Refill Date:{refill_date}</h3>
+            
             </div>
             <div class="nes-container is-rounded is-dark with-title is-centered">
             <div class='title'>Doctor</div>
@@ -199,6 +273,7 @@ console.log(medications.doctor.name)
                 <h3>Email:{medications.doctor.email}</h3>
             <br></br>
             </div>
+            <button onClick={() => handleDelete(medications)}>Remove</button>
             </div>
             </div>
         </>

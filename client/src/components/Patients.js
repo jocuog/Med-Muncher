@@ -7,25 +7,7 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
     const { name, username, avatar, image, points, level } = patient
 
     const textShow = () => {
-        if (textBubble) {
-            
-            return (
-            <div>
-             {/* <Popup trigger={ */}
-             {/* <button class="nes-balloon from-left"  > Click to open popup </button> */}
-            {/*  }  position="right center"> */}
-              <button class="nes-balloon from-right">Good Job {name}!
-              <br></br>
-              <button class="nes-btn is-success is-small"  onClick={() => window.location.reload(false)}> 
-              <i class="nes-icon coin is-small"></i>
-                CLaim Points! 
-              <i class="nes-icon coin is-small"></i>
-              </button>
-              </button>
-            {/* /</Popup>  */}
-            </div>
-            )
-        } else { 
+        if (textBubble === null) {
             return (
                 <div>
 
@@ -45,9 +27,47 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
       </div>  
       </div>
             )
+        } else if (textBubble === 1) { 
+            return (
+                <div>
+                 {/* <Popup trigger={ */}
+                 {/* <button class="nes-balloon from-left"  > Click to open popup </button> */}
+                {/*  }  position="right center"> */}
+                  <div style={{ color: 'green'}}class="nes-balloon from-right">Good Job {name}!
+                  <br></br>
+                  <button onClick={() => setTextBubble(null)} class="nes-btn is-success is-small" > 
+                  <i class="nes-icon coin is-small"></i>
+                    CLaim Points! 
+                  <i class="nes-icon coin is-small"></i>
+                  </button>
+                  </div>
+                {/* /</Popup>  */}
+                </div>
+                )
+        } else if ( textBubble === 2 ) {
+            return (
+            <div>
+
+            <div class="nes-balloon from-right"> 
+            
+            <p className='bubble-text'>
+            <i class="nes-icon is-small star"></i>
+            <i class="nes-icon is-small star"></i>
+            <i class="nes-icon is-small star"></i>
+            Hello {name}!
+            <i class="nes-icon is-small star"></i>
+            <i class="nes-icon is-small star"></i>
+            <i class="nes-icon is-small star"></i>
+            </p>
+            <p className='bubble-text'>Youre out of a</p>
+            <i class="nes-icon is-medium like"></i>
+   </div>  
+   </div>
+   )
         }
 }
-console.log(textBubble)
+
+
     return (
         <div class="nes-container is-rounded is-dark with-title is-centered"> 
         
@@ -75,7 +95,7 @@ console.log(textBubble)
             <h2></h2>
             
             {textShow()}
-            <i style={{ position: 'relative', left: '180px', transition: 'top 1s' }} class={`${avatar}`} />
+            <i style={{ position: 'relative', left: '180px'}} class={`${avatar}`} />
          
        </div>
         </div>

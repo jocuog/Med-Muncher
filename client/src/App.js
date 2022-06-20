@@ -19,9 +19,7 @@ function App() {
   const [patient, setPatient] = useState(null)
   const [medications, setMedications] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  // const [patients, setPatients] = useState([])
-  // const [doctor, setDoctor] = useState([])
-  // const [medications, setMedications] = useState([])
+
 
   let navigate = useNavigate();
 
@@ -74,7 +72,13 @@ useEffect(() => {
 //   });
 // }, []);
 
+// const completeEditing = () => {
+//   setProjectId(null);
+// };
 
+const onUpdatePatient = (updatedPat) => {
+  setPatient(updatedPat)
+}
 
 
 if (!patient) {
@@ -124,7 +128,7 @@ return (
       /> 
       <Route
         path='/edit-patient'
-        element={<EditPatient patient={patient} />}
+        element={<EditPatient patient={patient} onUpdatePatient={onUpdatePatient} />}
       /> 
       {/* <Route
         path='/patients/:id'

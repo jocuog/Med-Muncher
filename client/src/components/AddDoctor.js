@@ -46,8 +46,8 @@ const AddDoctor = ({patient}) => {
 
         
         return (
-            <div>
-            <div class="nes-container is-dark with-title">
+            <div className="add-doctor" >
+            <div className="add-doctor-container" class="nes-container is-rounded is-dark with-title">
             <h2 class="title">Add Doctor</h2>
                 <section>
                     <div>

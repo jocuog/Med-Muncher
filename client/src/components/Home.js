@@ -12,7 +12,7 @@ import NavBar from "./NavBar"
 const Home = ({ setPatient, patient }) => {
     const [medications, setMedications] = useState([]);
     const [doctors, setDoctors] = useState([]);
-    const [textBubble, setTextBubble] = useState(false);
+    const [textBubble, setTextBubble] = useState(null);
     // const { name, username, avatar, image, points, level } = patient
 
     useEffect(() => {
@@ -42,9 +42,32 @@ const Home = ({ setPatient, patient }) => {
             navigate("/");
     };
 
+    const onUpdateScore = (updatedScore) => {
+        setPatient(updatedScore)
+      }
+
+    const onDeleteMeds = (deletedMeds) => {
+        const updatedMeds = medications.filter(medication => medication.id !== deletedMeds.id)
+        setMedications(updatedMeds)
+        console.log('delete', deletedMeds);
+    }
+
+    const onUpdateMeds = (updatedMeds) => {
+        const updatedMedications = medications.map(ogmed => {
+            if(ogmed.id === updatedMeds.id){
+              return updatedMeds
+            } else {
+              return ogmed
+            }
+          })
+        setMedications(updatedMedications)
+      }
+      
+
+
 
     const medicationsList = medications.map((medications) => (
-        <MedicationItem key={medications.id} medications={medications} setMedications={setMedications} patient={patient} setTextBubble={setTextBubble}/>
+        <MedicationItem key={medications.id} medications={medications} setMedications={setMedications} patient={patient} setTextBubble={setTextBubble} onUpdateScore={onUpdateScore} onUpdateMeds={onUpdateMeds} onDeleteMeds={onDeleteMeds} />
     ));
     const doctorsList = doctors.map((doctors) => (
         <DoctorItem key={doctors.id} doctors={doctors} setDoctors={setDoctors}   />

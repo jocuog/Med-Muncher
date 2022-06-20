@@ -4,6 +4,7 @@ const Login = ({setPatient}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [displayError, setDisplayError] = useState(false);
 
     function onSubmit(e) {
         e.preventDefault();
@@ -22,13 +23,27 @@ const Login = ({setPatient}) => {
                     setPatient(patient);
                 });
             } else {
-                res.json().then((json) => setErrors(json.errors));
+                res.json().then((json) => 
+                setErrors(json.errors));
+                setDisplayError(true)
             }
         });
     }
 
+    const errorPopup = () => {
+        if (displayError) {
+            return (
+            <>
+             <div class="nes-balloon from-right is-dark">
+          <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
+        </div>
+            </>
+            )
+        }
+    }
+
     return (
-        <div >
+        <div className="login" >
         <div style={{ backgroundColor: 'red'}} class='nes-container is-dark with-title'>
             {/* <div className="form"> */}
                 <h2 class='title'>Patient Login</h2>
@@ -70,8 +85,12 @@ const Login = ({setPatient}) => {
                     type="submit"
                     >Login
                 </button>
+                
                 </form>
+            
             </div>
+                <img className='login-image' src="https://pbs.twimg.com/profile_images/1111692640/number_400x400.png" alt="Error muncher" />
+            {errorPopup()}
             </div>
         </div>
     );
