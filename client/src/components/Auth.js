@@ -1,4 +1,4 @@
-import { alignProperty } from "@mui/material/styles/cssUtils";
+
 import React, { useState } from "react";
 
 const Auth = ({ setPatient }) => {

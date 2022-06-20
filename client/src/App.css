@@ -74,6 +74,10 @@ align-items: center;
 
 .add-doctor-container {
 
+  
+  width: fit-content;
+block-size: fit-content;
+color: #50b147;
 }
 
 .new-medication {

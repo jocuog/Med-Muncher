@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 
 const DoctorItem = ({ doctors }) => {
     const { name, location, phone, email } =  doctors

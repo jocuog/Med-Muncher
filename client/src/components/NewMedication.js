@@ -1,4 +1,4 @@
-import { useParams, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -36,7 +36,7 @@ const NewMedication = ({ patient })=> {
         }).then((res) => {
             if (res.ok) {
                 res.json().then((user) => {
-                console.log("success", newMedication);
+                console.log("success");
                 navigate('/')
                 });
             } else {
@@ -53,26 +53,22 @@ const NewMedication = ({ patient })=> {
         });
     }, []);
 
-    console.log(newMedication)
-
+    
     return (
     <div className='new-medication'>
 
-    {/* <section> */}
+    <section>                    
 
-    <form>
+    <form className="form" autoComplete="off" onSubmit={handleSubmit}>
 
         <div class="nes-container is-success is-rounded is centered" >
 
             <h2 class="title">NEW MEDICATION</h2>
 
-            
-
             <div className='new-med-container' >
 
                 <div className='new-med-sub-container'>
         
-                    <div className="form" autoComplete="off" onSubmit={handleSubmit}>
                         <div className='med-form'>
                             <div>
             
@@ -144,7 +140,7 @@ const NewMedication = ({ patient })=> {
 
                             </div>
 
-                    </div>
+                    
     
                 </div>
 
@@ -172,7 +168,7 @@ const NewMedication = ({ patient })=> {
                     <br></br>
                     <input
                         class="nes-input is-warning"
-                        type="text"
+                        type="date"
                         id="fill_date"
                         name="fill_date"
                         onChange={handleChange}
@@ -184,7 +180,7 @@ const NewMedication = ({ patient })=> {
                 <br></br>
                 <input
                     class="nes-input is-warning"
-                    type="text"
+                    type="date"
                     id="refill_date"
                     name="refill_date"
                     onChange={handleChange}
@@ -193,11 +189,12 @@ const NewMedication = ({ patient })=> {
 
                 <br></br>
             
-            </div>
+                </div>
 
                 <button className="submit-button" type="submit" >ADD <br></br><h1>?</h1>MEDICATION</button>
-            </form> 
-        {/* </section> */}
+
+            </form>
+        </section>
     </div>
     )
 

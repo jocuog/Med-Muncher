@@ -1,4 +1,4 @@
-    import { useParams, useNavigate} from "react-router-dom";
+    import { useNavigate} from "react-router-dom";
     import { useState } from 'react'
 
 const AddDoctor = ({patient}) => {
@@ -46,16 +46,18 @@ const AddDoctor = ({patient}) => {
 
         
         return (
-            <div className="add-doctor" >
-            <div className="add-doctor-container" class="nes-container is-rounded is-dark with-title">
+            <div className="add-doctor"  >
+            <div style={{position: 'relative'}}>
+            <div style={{  maxWidth: '30%', color: 'white', opacity: 0.8,position: 'absolute', top: '150px', left: '50%' }} class="nes-container is-rounded is-dark with-title">
             <h2 class="title">Add Doctor</h2>
                 <section>
                     <div>
                     <form>
                     <div>
-                    <label htmlFor="name" class='nes-input'>Name</label>
+                    <label htmlFor="name" >Name</label>
                     <br></br>
                         <input
+                        class='nes-input is-dark is-success'
                             type="text"
                             id="name"
                             name="name"
@@ -64,9 +66,10 @@ const AddDoctor = ({patient}) => {
                         </div>
 
                         <div>
-                        <label htmlFor="location" class='nes-input'>location</label>
+                        <label htmlFor="location" >location</label>
                         <br></br>
                         <input
+                        class='nes-input is-dark is-success'
                             type="text"
                             id="location"
                             name="location"
@@ -75,9 +78,10 @@ const AddDoctor = ({patient}) => {
                         </div>
 
                         <div>
-                        <label htmlFor="phone" class='nes-input'>phone</label>
+                        <label htmlFor="phone" >phone</label>
                         <br></br>
                         <input
+                        class='nes-input is-dark is-success'
                             type="text"
                             id="phone"
                             name="phone"
@@ -86,9 +90,10 @@ const AddDoctor = ({patient}) => {
                         </div>
 
                         <div>
-                        <label htmlFor="email" class='nes-input'>email</label>
+                        <label htmlFor="email" >email</label>
                         <br></br>
                         <input
+                        class='nes-input is-dark is-success'
                             type="text"
                             id="email"
                             name="email"
@@ -96,11 +101,12 @@ const AddDoctor = ({patient}) => {
                             value={newDoctor.email} />
                         </div>
                         <br></br>
-                        <button onClick={handleSubmit} class="nes-btn is-primary" type="submit" >Add Doctor</button>
+                        <button style={{}} onClick={handleSubmit} class="nes-btn is-success" type="submit" >Add Doctor</button>
                     
                     </form>
                     </div>
                 </section>
+                </div>
                 </div>
             </div>
 

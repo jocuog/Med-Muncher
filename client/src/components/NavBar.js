@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import NewMedication from "./NewMedication.js";
 
 const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
 
@@ -25,7 +24,7 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
 
         <Link class="nes-container is-rounded is-dark" style={{ padding: 15 }} to="/new_medication">|ADD NEW MEDICATION|
         </Link>
-        
+
          <Link class="nes-container is-rounded is-dark" style={{ padding: 15 }} to="/add_Doctor">|ADD DOCTOR|
         </Link>
     
@@ -35,7 +34,7 @@ const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
         <button  style={{ margin: 15 }} class="nes-btn is-primary" type="button" onClick={logout}>LOGOUT</button>
         
         </div>
-        {/* <br></br> */}
+
         </div>
 
     )

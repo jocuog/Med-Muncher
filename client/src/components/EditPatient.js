@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Patients from "./Patients";
-import { SpriteAnimator } from 'react-sprite-animator'
-import Spritesheet from 'react-responsive-spritesheet';
+
 
 
 const EditPatient = ({patient, onUpdatePatient}) => {
@@ -55,22 +54,6 @@ const EditPatient = ({patient, onUpdatePatient}) => {
         
         <div>
         
-        {/* <Spritesheet
-          className={`my-element__class--style`}
-          image={`https://github.com/jocuog/Med-Muncher-project/blob/main/client/src/assets/DinoSprites%20-%20vita.png`}
-          widthFrame={420}
-          heightFrame={500}
-          steps={14}
-          fps={10}
-          autoplay={true}
-          loop={true}
-        /> */}
-
-        {/* <SpriteAnimator
-            sprite="client/src/assets/DinoSprites1.svg"
-            width={100}
-            height={100}
-        /> */}
         <div class="nes-container is-dark with-title" >
         <h2 class="title">Edit Profile</h2>
         <section>

@@ -1,7 +1,3 @@
-import { useState, useEffect } from "react";
-import EditPatient from "./EditPatient";
-import Popup from 'reactjs-popup';
-
 
 const Patients = ({patient, textBubble, setTextBubble}) => {
     const { name, username, avatar, image, points, level } = patient
@@ -92,8 +88,6 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
             </table>  
         </div>
         <div>
-            <h2></h2>
-            
             {textShow()}
             <i style={{ position: 'relative', left: '180px'}} class={`${avatar}`} />
          

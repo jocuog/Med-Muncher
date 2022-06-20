@@ -1,11 +1,9 @@
 import React , { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Doctors from './Doctors'
+import { useNavigate } from "react-router-dom";
 import Patients from './Patients'
-import Medications from './Medications'
 import MedicationItem from "./MedicationItem";
 import DoctorItem from "./DoctorItem";
-import NavBar from "./NavBar"
+
 
 
 

@@ -1,13 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Auth from "./components/Auth"
 import Login from "./components/Login"
 import Home from "./components/Home"
 import Doctors from './components/Doctors'
 import DoctorItem from './components/DoctorItem'
-import Patients from './components/Patients'
 import Medications from './components/Medications'
 import MedicationItem from './components/MedicationItem'
 import NavBar from "./components/NavBar"
@@ -19,9 +18,6 @@ function App() {
   const [patient, setPatient] = useState(null)
   const [medications, setMedications] = useState([]);
   const [doctors, setDoctors] = useState([]);
-
-
-  let navigate = useNavigate();
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -47,39 +43,9 @@ useEffect(() => {
   });
 }, []);
 
-
-// useEffect(() => {
-//   fetch("/doctors").then((r) => {
-//     if (r.ok) {
-//       r.json().then((doctor) => setDoctor(doctor));
-//     }
-//   });
-// }, []);
-
-// useEffect(() => {
-//   fetch("/patients").then((r) => {
-//     if (r.ok) {
-//       r.json().then((patients) => setPatients(patients));
-//     }
-//   });
-// }, []);
-
-// useEffect(() => {
-//   fetch("/medications").then((r) => {
-//     if (r.ok) {
-//       r.json().then((medications) => setMedications(medications));
-//     }
-//   });
-// }, []);
-
-// const completeEditing = () => {
-//   setProjectId(null);
-// };
-
 const onUpdatePatient = (updatedPat) => {
   setPatient(updatedPat)
 }
-
 
 if (!patient) {
   return (
@@ -130,10 +96,6 @@ return (
         path='/edit-patient'
         element={<EditPatient patient={patient} onUpdatePatient={onUpdatePatient} />}
       /> 
-      {/* <Route
-        path='/patients/:id'
-        element={<PatientItem />}
-      />  */}
       <Route 
         path="/medications" 
         element={<Medications />} />
@@ -145,25 +107,5 @@ return (
 );
 }
 
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;
