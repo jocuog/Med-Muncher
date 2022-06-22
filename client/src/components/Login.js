@@ -90,7 +90,7 @@ const Login = ({setPatient}) => {
                 </button>
                 
                 </form>
-            
+
             </div>
                 <div>
                 <div className="login-popup" >

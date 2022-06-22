@@ -27,8 +27,6 @@ html {
   height: auto;
 }
 
-
-
 .login-popup {
   margin-left: 60%;
   display: block;
@@ -63,14 +61,12 @@ html {
   display: flex;
   max-width: 100%;
   flex-direction: row;
-  
   justify-content: center;
   background-color: aqua;
 }
 
 .form {
   text-align: center;
-  
 }
 
 .mainhead {
@@ -91,15 +87,12 @@ html {
   
 }
 
-
-
-
 .bubble-text {
   color: black;
 }
 
 .nav-bar {
-align-items: center;
+  align-items: center;
 
 }
 
@@ -116,8 +109,8 @@ align-items: center;
 
 .add-doctor-container {
   width: fit-content;
-block-size: fit-content;
-color: #50b147;
+  block-size: fit-content;
+  color: #50b147;
 }
 
 .new-medication {
@@ -172,8 +165,7 @@ color: #50b147;
   top: 500px;
   right: 200px;
   background: rgb(247,247,236);
-background: linear-gradient(90deg, rgba(247,247,236,1) 0%, rgb(250, 248, 136) 6%, rgb(255, 246, 115) 7%, rgba(249, 239, 101, 0.904) 93%, rgba(173,184,51,1) 100%);
-
+  background: linear-gradient(90deg, rgba(247,247,236,1) 0%, rgb(250, 248, 136) 6%, rgb(255, 246, 115) 7%, rgba(249, 239, 101, 0.904) 93%, rgba(173,184,51,1) 100%);
 }
 
 .submit-button {
@@ -200,8 +192,6 @@ background: linear-gradient(90deg, rgba(247,247,236,1) 0%, rgb(250, 248, 136) 6%
   opacity: 0.8;
 }
 
-
-
 .edit-profile-container {
   background-image: url("https://giffiles.alphacoders.com/116/11669.gif"); 
   min-height: 100vh;
@@ -212,8 +202,6 @@ background: linear-gradient(90deg, rgba(247,247,236,1) 0%, rgb(250, 248, 136) 6%
   background-position: 0px -60vh;
 
 }
-
-
 
 .medication-container {
   flex-grow: 1;
@@ -230,3 +218,47 @@ background: linear-gradient(90deg, rgba(247,247,236,1) 0%, rgb(250, 248, 136) 6%
   align-items: center;
 }
 
+.text-balloon {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.text-balloon span::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  animation: a-ltr-after 2s cubic-bezier(.77,0,.18,1) forwards;
+  transform: translateX(-101%);
+}
+
+/* .text-balloon span::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  animation: a-ltr-before 2s cubic-bezier(.77,0,.18,1) forwards;
+  transform: translateX(0);
+}
+
+.text-balloon span:nth-of-type(1)::before,
+.text-balloon span:nth-of-type(1)::after{
+  animation-delay: 1s;
+}
+
+@keyframes a-ltr-after{
+  0% {transform: translateX(-100%)}
+  100% {transform: translateX(101%)}
+}
+
+@keyframes a-ltr-before{
+  0% {transform: translateX(0)}
+  100% {transform: translateX(200%)}
+} */

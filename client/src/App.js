@@ -5,9 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Auth from "./components/Auth"
 import Login from "./components/Login"
 import Home from "./components/Home"
-import Doctors from './components/Doctors'
 import DoctorItem from './components/DoctorItem'
-import Medications from './components/Medications'
 import MedicationItem from './components/MedicationItem'
 import NavBar from "./components/NavBar"
 import NewMedication from './components/NewMedication';
@@ -85,10 +83,6 @@ return (
         element={<NewMedication patient={patient} doctors={doctors} setDoctors={setDoctors}/>}
       /> 
       <Route
-        path='/doctors'
-        element={<Doctors />}
-      /> 
-      <Route
         path='/add_doctor'
         element={<AddDoctor patient={patient} />}
       /> 
@@ -96,9 +90,6 @@ return (
         path='/edit-patient'
         element={<EditPatient patient={patient} onUpdatePatient={onUpdatePatient} />}
       /> 
-      <Route 
-        path="/medications" 
-        element={<Medications />} />
       <Route 
         path="medications/:id" 
         element={<MedicationItem />} />

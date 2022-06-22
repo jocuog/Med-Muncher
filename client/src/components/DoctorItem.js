@@ -1,5 +1,4 @@
 
-
 const DoctorItem = ({ doctors }) => {
     const { name, location, phone, email } =  doctors
 

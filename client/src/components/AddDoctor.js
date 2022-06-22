@@ -12,14 +12,11 @@ const AddDoctor = ({patient}) => {
             email: ""
         })
     
-    
-    
         const handleChange = (e) => {
             const { name,  value} = e.target
             setNewDoctor((newDoctor) => ({...newDoctor, [name]: value}))
         }
         
-    
         let navigate = useNavigate();
 
     
@@ -102,15 +99,12 @@ const AddDoctor = ({patient}) => {
                         </div>
                         <br></br>
                         <button style={{}} onClick={handleSubmit} class="nes-btn is-success" type="submit" >Add Doctor</button>
-                    
                     </form>
                     </div>
                 </section>
                 </div>
                 </div>
             </div>
-
-
         )
 }
 

@@ -4,14 +4,10 @@ import Patients from './Patients'
 import MedicationItem from "./MedicationItem";
 import DoctorItem from "./DoctorItem";
 
-
-
-
 const Home = ({ setPatient, patient }) => {
     const [medications, setMedications] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [textBubble, setTextBubble] = useState(null);
-    // const { name, username, avatar, image, points, level } = patient
 
     useEffect(() => {
         fetch("/my_medications").then((r) => {
@@ -42,7 +38,7 @@ const Home = ({ setPatient, patient }) => {
 
     const onUpdateScore = (updatedScore) => {
         setPatient(updatedScore)
-      }
+    }
 
     const onDeleteMeds = (deletedMeds) => {
         const updatedMeds = medications.filter(medication => medication.id !== deletedMeds.id)
@@ -53,27 +49,41 @@ const Home = ({ setPatient, patient }) => {
     const onUpdateMeds = (updatedMeds) => {
         const updatedMedications = medications.map(ogmed => {
             if(ogmed.id === updatedMeds.id){
-              return updatedMeds
+                return updatedMeds
             } else {
-              return ogmed
+                return ogmed
             }
-          })
+        })
         setMedications(updatedMedications)
-      }
-      
-
-
+    }
 
     const medicationsList = medications.map((medications) => (
-        <MedicationItem key={medications.id} medications={medications} setMedications={setMedications} patient={patient} setTextBubble={setTextBubble} onUpdateScore={onUpdateScore} onUpdateMeds={onUpdateMeds} onDeleteMeds={onDeleteMeds} />
+        <MedicationItem 
+            key={medications.id} 
+            medications={medications} 
+            setMedications={setMedications} 
+            patient={patient} 
+            setTextBubble={setTextBubble} 
+            onUpdateScore={onUpdateScore} 
+            onUpdateMeds={onUpdateMeds} 
+            onDeleteMeds={onDeleteMeds} />
     ));
+
     const doctorsList = doctors.map((doctors) => (
-        <DoctorItem key={doctors.id} doctors={doctors} setDoctors={setDoctors}   />
+        <DoctorItem 
+            key={doctors.id} 
+            doctors={doctors} 
+            setDoctors={setDoctors} />
     ));
 
     return (
         <div >
-                <Patients patient={patient} setPatient={setPatient} textBubble={textBubble} setTextBubble={setTextBubble}/>
+                <Patients 
+                    patient={patient}
+                    setPatient={setPatient} 
+                    textBubble={textBubble} 
+                    setTextBubble={setTextBubble}/>
+
             <div class="nes-container is-dark with-title is-centered">
                 <h2 class="title">Medications</h2>
                 <br></br>

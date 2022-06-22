@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Countdown from "react-countdown";
-import { useNavigate } from "react-router-dom";
 
 const getLocalStorageValue = (s) => localStorage.getItem(s);
 
@@ -10,12 +9,12 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
     const [patientPoints, setPatientPoints] = useState(points)
     const [patientsLevel, setPatientsLevel] = useState(level)
     const [remainingDoses, setRemainingDoses] = useState(initial_amount)
-    const [refresh, setrefresh] = useState(false)
     const [data, setData] = useState(
         { date: Date.now(), delay: (frequency)*10000 } //10 seconds
     );
 
         const dateFormat = (date) => {
+            if(date)
             return (
                 date.split('T')[0]
         )}
@@ -205,8 +204,7 @@ useEffect(() => {
                         </div>
                         </div>    
                     </div>
-                            <button className="remove-button" onClick={() => handleDelete(medications)}>Remove Medicine</button>
-
+                        <button className="remove-button" onClick={() => handleDelete(medications)}>Remove Medicine</button>
             </div>
         </>
     )
