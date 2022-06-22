@@ -10,46 +10,79 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
     const [patientPoints, setPatientPoints] = useState(points)
     const [patientsLevel, setPatientsLevel] = useState(level)
     const [remainingDoses, setRemainingDoses] = useState(initial_amount)
-
-
+    const [refresh, setrefresh] = useState(false)
     const [data, setData] = useState(
         { date: Date.now(), delay: (frequency)*10000 } //10 seconds
     );
 
+        const dateFormat = (date) => {
+            return (
+                date.split('T')[0]
+        )}
+
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        
+        const handleCompleteCount = () => {
+            if (localStorage.getItem("end_date") != null)
+                        localStorage.removeItem("end_date");
+                            setPatientPoints((patientPoints) => patientPoints + 10)
+        
+                            if (patientPoints%100 === 0) {
+                                setPatientsLevel((patientsLevel) => patientsLevel + 1)
+                            }
+        
+                            if (remainingDoses <= (dosage) + 1)
+                                
+                                setRemainingDoses((remainingDoses) => remainingDoses - dosage)
+                                setTextBubble(2)
+                            if (remainingDoses <= 1) {
+                                fetch(`medications/${medications.id}`, {
+                                    method: "DELETE"
+                                })
+                                   onDeleteMeds(medications) 
+                    
+                            } else {
+                                setTextBubble(1)
+                                setRemainingDoses((remainingDoses) => remainingDoses - dosage)
+                    }
+                return(
+                    setData({ date: Date.now(), delay: (frequency)*10000 }),
+                    console.log("comple",completed)
+                    )
+            }
         
         if (completed) {
           // Render a complete state
-          
             return (
-            <> 
-               {/* <button  class="nes-balloon from-right">Click here</button> */}
-             <button style={{ position: 'relative', bottom: '50px'}}  class="nes-balloon from-right" > 
-             Time To take {dosage} of {name}.
-            <br></br>
-            {instructions}
-             <br></br>
-             - Dr. {medications.doctor.name}
-             <br></br>
-             <button class="nes-btn is-success is-small" onClick={handleCompleteCount}> I did it! </button>
-             </button> 
-              
-            <i style={{ position: 'relative', top: '135px'}} class="nes-bcrikko"></i> 
-            </>
+                <> 
+                    <button style={{ position: 'relative', bottom: '50px'}}  class="nes-balloon from-right" > 
+                        Time To take {dosage} of {name}.
+                        <br></br>
+                        {instructions}
+                        <br></br>
+                        - Dr. {medications.doctor.name}
+                        <br></br>
+
+                        <button class="nes-btn is-success is-small" onClick={handleCompleteCount}> I did it! 
+                        </button>
+                        
+                    </button> 
+                    <i style={{ position: 'relative', top: '135px'}} class="nes-bcrikko"></i> 
+                </>
             )              
         } else {
           // Render a countdown
             return (
-            <span>
-                Days{days}:Hours{hours}:Minutes{minutes}:Seconds{seconds}
-            </span>
+                <span>
+                    Days{days}:Hours{hours}:Minutes{minutes}:Seconds{seconds}
+                </span>
             );
         }
     };
 
-    const wantedDelay = 60000; //10 ms
 
- 
+
+    const wantedDelay = 60000; //10 ms
 
     useEffect(() => {
 
@@ -59,11 +92,11 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
                 const delta = parseInt(savedDate, 10) - currentTime;
           //Do you reach the end?
             if (delta > wantedDelay) {
-            //Yes we clear uour saved end date
+            //Yes we clear our saved end date
             
             if (localStorage.getItem("end_date").length > 0)
                 localStorage.removeItem("end_date")
-                
+
             } else {
             //No update the end date with the current date
             setData({ date: currentTime, delay: delta });
@@ -71,7 +104,7 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
             }
         }  
         
-    },[] );
+    },[setData,points] );
 
     const handleDelete = (medications) => {
         fetch(`medications/${medications.id}`, {
@@ -81,31 +114,6 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
         console.log(medications)
     }
     
-    const handleCompleteCount = () => {
-    if (localStorage.getItem("end_date") != null)
-                localStorage.removeItem("end_date");
-                    setPatientPoints((patientPoints) => patientPoints + 10)
-
-                    if (patientPoints%100 === 0) {
-                        setPatientsLevel((patientsLevel) => patientsLevel + 1)
-                    }
-
-                    if (remainingDoses <= (dosage) + 1)
-                        
-                        setRemainingDoses((remainingDoses) => remainingDoses - dosage)
-                        setTextBubble(2)
-                    if (remainingDoses <= 1) {
-                        fetch(`medications/${medications.id}`, {
-                            method: "DELETE"
-                        })
-                           onDeleteMeds(medications) 
-            
-                    } else {
-                        setTextBubble(1)
-                        setRemainingDoses((remainingDoses) => remainingDoses - dosage)
-            }
-    }
-
 useEffect(() => {
 
     fetch(`/patients/${patient.id}`, {
@@ -145,56 +153,60 @@ useEffect(() => {
     return (
         <>
         
-        <div class="nes-container is-dark with-title is-centered"> 
-        <h2 class="title">{name}</h2>
-            <div class="nes-container is-rounded is-dark">
-            <Countdown
-            date={data.date + data.delay}
-            renderer={renderer}
-            autoStart='true'
-            onStart={(delta) => {
-            //Save the end date
-                if (localStorage.getItem("end_date") == null)
-                    localStorage.setItem(
-                    "end_date",
-                    JSON.stringify(data.date + data.delay)
-                    );
-            }}
+        <div class="nes-container is-dark is-rounded with-title is-centered">
 
-             />
-            </div>
+            <h2 class="title">{name}</h2>
+
+                <div class="nes-container is-rounded is-dark with-title is-centered">
+                <div class="title">Countdown</div>
+                    <Countdown
+                    date={data.date + data.delay}
+                    renderer={renderer}
+                    onStart={(delta) => {
+                    //Save the end date
+                        if (localStorage.getItem("end_date") == null)
+                            localStorage.setItem(
+                            "end_date",
+                            JSON.stringify(data.date + data.delay)
+                            );
+                    }}
+                    />
+                </div>
             <div className="med-doc-container">
-             <div class="nes-container is-rounded is-dark with-title is-centered">
-             <div class='title'>Medication</div>
-            <h3>Medicine:{name}</h3>
-            <h3>Dosage:{dosage}</h3>
-            <h3>Frequency(Days):{frequency}</h3>
-            <h3>Instructions:{instructions}</h3>
-            <h3>Remaining:{initial_amount}</h3>
-            
-            <h3>Fill Date:{fill_date}</h3>
-            <h3>Refill Date:{refill_date}</h3>
-            
-            </div>
-            <div class="nes-container is-rounded is-dark with-title is-centered">
-            <div class='title'>Doctor</div>
+                <div class="nes-container is-rounded is-dark with-title is-centered">
+                    <div  class='title'>Medication</div>
+                        <div className='medication-container' >
+                        <h3>Medicine:{name}</h3>
+                        <h3>Dosage:{dosage}</h3>
+                        <h3>Frequency(Days):{frequency}</h3>
+                        <h3>Instructions:{instructions}</h3>
+                        <h3>Remaining:{initial_amount}</h3>
+                        <h3>Fill Date:{dateFormat(fill_date)}</h3>
+                        <h3>Refill Date:{dateFormat(refill_date)}</h3>
+                        </div>
+                    </div>
+                    <div class="nes-container is-rounded is-dark with-title is-centered">
+                        <div class='title'>Doctor</div>
+                        <div className="doctor-container">
+                            <i class="nes-icon is-small heart"></i>
+                            <i class="nes-icon is-small heart"></i>
+                            <i class="nes-icon is-small heart"></i>
+                            <i class="nes-icon is-small heart"></i>
+                            <i class="nes-icon is-small heart"></i>
+                            <br></br>
+                                <h3>Name:{medications.doctor.name}</h3>
+                                    <br></br>
+                                <h3>Location:{medications.doctor.location}</h3>
+                                    <br></br>
+                                <h3>Phone:{medications.doctor.phone}</h3>
+                                    <br></br>
+                                <h3>Email:{medications.doctor.email}</h3>
+                                    <br></br>
+                        </div>
+                        </div>    
+                    </div>
+                            <button className="remove-button" onClick={() => handleDelete(medications)}>Remove Medicine</button>
 
-            <i class="nes-icon is-small heart"></i>
-            <i class="nes-icon is-small heart"></i>
-            <i class="nes-icon is-small heart"></i>
-            <i class="nes-icon is-small heart"></i>
-            <i class="nes-icon is-small heart"></i>
-                <h3>Name:{medications.doctor.name}</h3>
-            <br></br>
-                <h3>Location:{medications.doctor.location}</h3>
-            <br></br>
-                <h3>Phone:{medications.doctor.phone}</h3>
-            <br></br>
-                <h3>Email:{medications.doctor.email}</h3>
-            <br></br>
-            </div>
-            <button onClick={() => handleDelete(medications)}>Remove</button>
-            </div>
             </div>
         </>
     )

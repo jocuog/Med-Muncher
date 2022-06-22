@@ -49,7 +49,7 @@ const onUpdatePatient = (updatedPat) => {
 
 if (!patient) {
   return (
-    <>
+    <div className='main-container'>
     
     <h1 className="mainhead">Med Muncher</h1>
     
@@ -59,13 +59,13 @@ if (!patient) {
     />
     <br></br>
     <Auth setPatient={setPatient} />
-    </>
+    </div>
   );
 }
 
 
 return (
-  <>
+  <div className='main-container'>
     <NavBar
       setPatient={setPatient}
       patient={patient}
@@ -103,7 +103,7 @@ return (
         path="medications/:id" 
         element={<MedicationItem />} />
     </Routes>  
-  </>
+  </div>
 );
 }
 

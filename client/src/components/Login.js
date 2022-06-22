@@ -34,35 +34,36 @@ const Login = ({setPatient}) => {
         if (displayError) {
             return (
             <>
-             <div class="nes-balloon from-right is-dark">
-          <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
-        </div>
+                <div class="nes-balloon from-right is-dark">
+                    <p>Incorrect Login.</p>
+                </div>
             </>
+            )
+        } else {
+            return (
+                <>
+                    <div class="nes-balloon from-right is-dark">
+                        <p >Sign In to your Account.</p>
+                    </div>  
+                </>
             )
         }
     }
 
     return (
+        
+        <div style={{ opacity: '.8'}} class='nes-container is-dark is-rounded with-title'>
+        <div class='title'>Patient Login</div>
         <div className="login" >
-        <div style={{ backgroundColor: 'red'}} class='nes-container is-dark with-title'>
-            {/* <div className="form"> */}
-                <h2 class='title'>Patient Login</h2>
-            {/* </div> */}
+        
             <div>
                 <form onSubmit={onSubmit}>
-                {/* <div>
-                    <label>Name</label>
-                    <input
-                        type="text"
-                        placeholder="Enter new Name..."
-                        id="exampleEmailInput"
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div> */}
+    
                 <div>
                     <label class='nes-field'>Username</label>
                     <br></br>
                     <input
+                        style={{ borderRadius: '5px', backgroundColor: 'pink' }}
                         type="text"
                         placeholder="Enter new username..."
                         id="exampleEmailInput"
@@ -74,6 +75,7 @@ const Login = ({setPatient}) => {
                     <label class='nes-field'>Password </label>
                     <br></br>
                     <input
+                    style={{ borderRadius: '5px', backgroundColor: 'pink'}}
                         type="password"
                         placeholder="Enter new password..."
                         id="exampleEmailInput"
@@ -81,6 +83,7 @@ const Login = ({setPatient}) => {
                     />
                 </div>
                 <button
+                    style={{ marginTop: '20px'}}
                     class="nes-btn is-primary"
                     type="submit"
                     >Login
@@ -89,8 +92,13 @@ const Login = ({setPatient}) => {
                 </form>
             
             </div>
-                <img className='login-image' src="https://pbs.twimg.com/profile_images/1111692640/number_400x400.png" alt="Error muncher" />
-            {errorPopup()}
+                <div>
+                <div className="login-popup" >
+                    {errorPopup()}
+                </div>
+            
+                <img className='login-image' src="https://art.ngfiles.com/images/781000/781757_sketching1star_pac-man-looped.gif?f1547186404" alt="Error muncher" />
+                </div>
             </div>
         </div>
     );

@@ -72,28 +72,12 @@ const Home = ({ setPatient, patient }) => {
     ));
 
     return (
-        <div>
-        
-
-            {/* <NavBar
-                setPatient={setPatient}
-                patient={patient}
-                setDoctors={setDoctors}
-                doctors={doctors}
-            /> */}
-            <Patients patient={patient} setPatient={setPatient} textBubble={textBubble} setTextBubble={setTextBubble}/>
-            {/* <h2>Name:{name}</h2>
-            <h2>Username:{username}</h2>
-            <h2>avatar:{avatar}</h2>
-            <h2>image:{image}</h2>
-            <h2>points:{points}</h2>
-            <h2>level:{level}</h2> */}
+        <div >
+                <Patients patient={patient} setPatient={setPatient} textBubble={textBubble} setTextBubble={setTextBubble}/>
             <div class="nes-container is-dark with-title is-centered">
-        <h2 class="title">Medications</h2>
-            <br></br>
-            {medicationsList}
-            {/* <br></br>
-            {doctorsList} */}
+                <h2 class="title">Medications</h2>
+                <br></br>
+                {medicationsList}
             </div>
         </div>
     )
