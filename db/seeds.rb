@@ -9,13 +9,13 @@ p5 = Patient.create(name: 'test5', username: 'test5', password: 'test5', avatar:
 p6 = Patient.create(name: 'test6', username: 'test6', password: 'test6', avatar: 'test6', image: 'test6', points: 600, level: 6)
 
 # doctors
-d1 = Doctor.create(name: 'doc1', location: 'test1', phone: 'test1', email: 'test1')
-d2 = Doctor.create(name: 'doc2', location: 'test2', phone: 'test2', email: 'test2')
-d3 = Doctor.create(name: 'doc3', location: 'test3', phone: 'test3', email: 'test3')
-d4 = Doctor.create(name: 'doc4', location: 'test4', phone: 'test4', email: 'test4')
-d5 = Doctor.create(name: 'doc5', location: 'test5', phone: 'test5', email: 'test5')
-d6 = Doctor.create(name: 'doc6', location: 'test6', phone: 'test6', email: 'test6')
-d7 = Doctor.create(name: 'doc7', location: 'test7', phone: 'test7', email: 'test7')
+d1 = Doctor.create(name: 'Dr. Evil', location: 'Moon', phone: '555-555-5555', email: 'evil@email.com')
+d2 = Doctor.create(name: 'Dr. Jack Kevorkian', location: 'Michigan', phone: '555-555-5555', email: 'kevorkian@email.com')
+d3 = Doctor.create(name: 'Dr. Hannibal Lecter ', location: 'Baltimore', phone: '555-555-5555', email: 'hannibal@email.com')
+d4 = Doctor.create(name: 'Dr. Frankenstein', location: 'Switzerland', phone: '555-555-5555', email: 'frankenstein.com')
+d5 = Doctor.create(name: 'Dr. Moreau', location: 'Island', phone: '555-555-5555', email: 'moreau@email.com')
+d6 = Doctor.create(name: 'Dr. Nick Riviera', location: 'Springfield', phone: '555-555-5555', email: 'riviera@email.com')
+d7 = Doctor.create(name: 'Dr. Katz', location: 'Seattle', phone: 'test7', email: '555-555-5555', email: 'katz@email.com')
 
 # medications
 m1 = Medication.create(name: 'test1', dosage: '1', frequency: '1', instructions: 'test1', initial_amount: 1, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p1.id, doctor_id: d1.id)

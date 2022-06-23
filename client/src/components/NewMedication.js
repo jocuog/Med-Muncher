@@ -72,7 +72,7 @@ const NewMedication = ({ patient })=> {
                         <div className='med-form'>
                             <div>
             
-                                <label className="form-text" htmlFor="name" >NAME</label>
+                                <label className="form-text" htmlFor="name" >Name</label>
                                 <br></br>
                                     <input
                                         placeholder="ENTER NAME..."
@@ -85,7 +85,7 @@ const NewMedication = ({ patient })=> {
                                 </div>
 
                                 <div>
-                                <label className="form-text" htmlFor="instructions" >INSTRUCTIONS</label>
+                                <label className="form-text" htmlFor="instructions" >Instructions</label>
                                 <br></br>
                                     <input
                                         placeholder="INSTRUCTIONS..."
@@ -98,7 +98,7 @@ const NewMedication = ({ patient })=> {
                                 </div>    
 
                                 <div>
-                                <label className="form-text" htmlFor="dosage" >DOSAGE</label>
+                                <label className="form-text" htmlFor="dosage" >Dosage</label>
                                 <br></br>
                                     <input
                                         class="nes-input is-success"
@@ -112,7 +112,7 @@ const NewMedication = ({ patient })=> {
                                 </div>    
                         
                                 <div>
-                                <label className="form-text" htmlFor="frequency" >FREQUENCY</label>
+                                <label className="form-text" htmlFor="frequency" >Frequency</label>
                                 <br></br>
                                     <input
                                         class="nes-input is-success"
@@ -126,7 +126,7 @@ const NewMedication = ({ patient })=> {
                                 </div>    
     
                                 <div>
-                                <label className="form-text" htmlFor="initial_amount" >STARTING QUANTITY</label>
+                                <label className="form-text" htmlFor="initial_amount" >Starting Quantity</label>
                                 <br></br>
                                     <input
                                         class="nes-input is-success"
@@ -149,7 +149,7 @@ const NewMedication = ({ patient })=> {
 
             <div className="med-form2" >
                 <div >
-                    <label htmlFor="doctor_id" >Doctor</label>
+                    <label  htmlFor="doctor_id" >Doctor</label>
                     <br></br>
                     <select
                         class="nes-input is-warning"

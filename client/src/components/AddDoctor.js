@@ -63,7 +63,7 @@ const AddDoctor = ({patient}) => {
                         </div>
 
                         <div>
-                        <label htmlFor="location" >location</label>
+                        <label htmlFor="location" >Location</label>
                         <br></br>
                         <input
                         class='nes-input is-dark is-success'
@@ -75,7 +75,7 @@ const AddDoctor = ({patient}) => {
                         </div>
 
                         <div>
-                        <label htmlFor="phone" >phone</label>
+                        <label htmlFor="phone" >Phone</label>
                         <br></br>
                         <input
                         class='nes-input is-dark is-success'
@@ -87,7 +87,7 @@ const AddDoctor = ({patient}) => {
                         </div>
 
                         <div>
-                        <label htmlFor="email" >email</label>
+                        <label htmlFor="email" >Email</label>
                         <br></br>
                         <input
                         class='nes-input is-dark is-success'
