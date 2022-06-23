@@ -161,7 +161,7 @@ const NewMedication = ({ patient })=> {
                         {doctors.map((doctor) => {return <option key={doctor.id} value={doctor.id} >{doctor.name}</option>})}
                     </select>
                 </div>
-
+                    <br></br>
                 <div>
                     <label htmlFor="fill_date" >Fill Date</label>
                         <br></br>
@@ -173,7 +173,7 @@ const NewMedication = ({ patient })=> {
                             onChange={handleChange}
                             value={newMedication.fill_date} />
                 </div>    
-
+                    <br></br>
                 <div>
                     <label htmlFor="refill_date" >Refill Date</label>
                         <br></br>
@@ -187,7 +187,7 @@ const NewMedication = ({ patient })=> {
                 </div>
 
                 <br></br>
-                
+
                 </div>
 
                 <button className="submit-button" type="submit" >ADD <br></br><h1>?</h1>MEDICATION</button>

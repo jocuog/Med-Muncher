@@ -18,12 +18,12 @@ d6 = Doctor.create(name: 'doc6', location: 'test6', phone: 'test6', email: 'test
 d7 = Doctor.create(name: 'doc7', location: 'test7', phone: 'test7', email: 'test7')
 
 # medications
-m1 = Medication.create(name: 'test1', dosage: '1', frequency: '1', instructions: 'test1', initial_amount: 1, remaining:10, refills:3, refills_remaining:1, fill_date: '2022/05/20', refill_date: '2022/05/22', refills: 3, taken: false, patient_id: p1.id, doctor_id: d1.id)
-m2 = Medication.create(name: 'test2', dosage: '2', frequency: '2', instructions: 'test2', initial_amount: 2, remaining:10, refills:3, refills_remaining:1, fill_date: '2022/05/20', refill_date: '2022/05/22', refills: 3, taken: false, patient_id: p2.id, doctor_id: d2.id)
-m3 = Medication.create(name: 'test3', dosage: '3', frequency: '3', instructions: 'test3', initial_amount: 3, remaining:10, refills:3, refills_remaining:1, fill_date: '2022/05/20', refill_date: '2022/05/22', refills: 3, taken: false, patient_id: p3.id, doctor_id: d3.id)
-m4 = Medication.create(name: 'test4', dosage: '4', frequency: '4', instructions: 'test4', initial_amount: 4, remaining:10, refills:3, refills_remaining:1, fill_date: '2022/05/20', refill_date: '2022/05/22', refills: 3, taken: false, patient_id: p4.id, doctor_id: d4.id)
-m5 = Medication.create(name: 'test5', dosage: '5', frequency: '5', instructions: 'test5', initial_amount: 5, remaining:10, refills:3, refills_remaining:1, fill_date: '2022/05/20', refill_date: '2022/05/22', refills: 3, taken: false, patient_id: p5.id, doctor_id: d5.id)
-m6 = Medication.create(name: 'test6', dosage: '6', frequency: '6', instructions: 'test6', initial_amount: 6, remaining:10, refills:3, refills_remaining:1, fill_date: '2022/05/20', refill_date: '2022/05/22', refills: 3, taken: false, patient_id: p6.id, doctor_id: d6.id)
-m7 = Medication.create(name: 'test7', dosage: '7', frequency: '7', instructions: 'test7', initial_amount: 7, remaining:10, refills:3, refills_remaining:1, fill_date: '2022/05/20', refill_date: '2022/05/22', refills: 3, taken: false, patient_id: p6.id, doctor_id: d7.id)
+m1 = Medication.create(name: 'test1', dosage: '1', frequency: '1', instructions: 'test1', initial_amount: 1, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p1.id, doctor_id: d1.id)
+m2 = Medication.create(name: 'test2', dosage: '2', frequency: '2', instructions: 'test2', initial_amount: 2, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p2.id, doctor_id: d2.id)
+m3 = Medication.create(name: 'test3', dosage: '3', frequency: '3', instructions: 'test3', initial_amount: 3, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p3.id, doctor_id: d3.id)
+m4 = Medication.create(name: 'test4', dosage: '4', frequency: '4', instructions: 'test4', initial_amount: 4, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p4.id, doctor_id: d4.id)
+m5 = Medication.create(name: 'test5', dosage: '5', frequency: '5', instructions: 'test5', initial_amount: 5, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p5.id, doctor_id: d5.id)
+m6 = Medication.create(name: 'test6', dosage: '6', frequency: '6', instructions: 'test6', initial_amount: 6, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p6.id, doctor_id: d6.id)
+m7 = Medication.create(name: 'test7', dosage: '7', frequency: '7', instructions: 'test7', initial_amount: 7, remaining:10, fill_date: '2022/05/20', refill_date: '2022/05/22', patient_id: p6.id, doctor_id: d7.id)
 
 puts "Seeding completed successfully 🌱"

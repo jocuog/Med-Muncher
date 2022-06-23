@@ -4,11 +4,18 @@ import Countdown from "react-countdown";
 const getLocalStorageValue = (s) => localStorage.getItem(s);
 
 const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, onUpdateMeds, onDeleteMeds }) => {
-    const { name, dosage, frequency, instructions, initial_amount, fill_date, refill_date, refills, refills_remaining, taken} = medications
+    const { name, dosage, frequency, instructions, initial_amount, fill_date, refill_date} = medications
     const { points, level} = patient
     const [patientPoints, setPatientPoints] = useState(points)
     const [patientsLevel, setPatientsLevel] = useState(level)
     const [remainingDoses, setRemainingDoses] = useState(initial_amount)
+
+    const dayMultiplier = (freq) => {
+        return (
+            ((freq)*1000*60*60*24)  
+        )
+    }
+
     const [data, setData] = useState(
         { date: Date.now(), delay: (frequency)*10000 } //10 seconds
     );
@@ -30,7 +37,7 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
                                 setPatientsLevel((patientsLevel) => patientsLevel + 1)
                             }
         
-                            if (remainingDoses <= (dosage) + 1)
+                            if (remainingDoses <= 1)
                                 
                                 setRemainingDoses((remainingDoses) => remainingDoses - dosage)
                                 setTextBubble(2)
@@ -38,15 +45,14 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
                                 fetch(`medications/${medications.id}`, {
                                     method: "DELETE"
                                 })
-                                   onDeleteMeds(medications) 
+                                    onDeleteMeds(medications) 
                     
                             } else {
                                 setTextBubble(1)
                                 setRemainingDoses((remainingDoses) => remainingDoses - dosage)
                     }
                 return(
-                    setData({ date: Date.now(), delay: (frequency)*10000 }),
-                    console.log("comple",completed)
+                    setData({ date: Date.now(), delay: (frequency)*10000 })
                     )
             }
         
@@ -62,7 +68,8 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
                         - Dr. {medications.doctor.name}
                         <br></br>
 
-                        <button class="nes-btn is-success is-small" onClick={handleCompleteCount}> I did it! 
+                        <button class="nes-btn is-success is-small" onClick={handleCompleteCount}>
+                            I did it! 
                         </button>
                         
                     </button> 
@@ -184,6 +191,9 @@ useEffect(() => {
                         <h3>Refill Date:{dateFormat(refill_date)}</h3>
                         </div>
                     </div>
+                        {/* <div >
+                            <img src="" alt="pills" />
+                        </div> */}
                     <div class="nes-container is-rounded is-dark with-title is-centered">
                         <div class='title'>Doctor</div>
                         <div className="doctor-container">

@@ -65,6 +65,7 @@ const EditPatient = ({patient, onUpdatePatient}) => {
                                                     <label htmlFor="username" class='nes-field'> Change Username</label>
                                                         <br></br>
                                                     <input
+                                                        class="nes-input is-warning"
                                                         style={{ borderRadius: '5px', backgroundColor: 'pink' }}
                                                         type="text"
                                                         id="username"
@@ -72,11 +73,12 @@ const EditPatient = ({patient, onUpdatePatient}) => {
                                                         onChange={handleChange}
                                                         value={patientData.username} />
                                                 </div>
-
+                                                        <br></br>
                                                     <label htmlFor="image" class='nes-field'> Enter an Image</label>
                                                             <br></br>
                                                         <div>
                                                             <input
+                                                                class="nes-input is-warning"
                                                                 style={{ borderRadius: '5px', backgroundColor: 'pink' }}
                                                                 type="text"
                                                                 id="image"
@@ -90,7 +92,7 @@ const EditPatient = ({patient, onUpdatePatient}) => {
                                                         <label htmlFor="avatar" class='nes-field'>Pick Your Buddy</label>    
                                                     </div>
                                                         <i class={`${patientData.avatar}`} />
-                                                    <div>
+                                                    <div class="nes-select is-error">
                                                         <br></br>
 
                                                         <select

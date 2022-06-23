@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Patients = ({patient, textBubble, setTextBubble}) => {
+const Patients = ({patient, textBubble}) => {
     const { name, username, avatar, image, points, level } = patient
 
     let navigate = useNavigate();
@@ -10,7 +10,7 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
             return (
                 <div>
                     <p>Hey, if you want an image here,</p>
-                        <button onClick={() => navigate('/edit-patient')} class="nes-btn is-success is-small" > 
+                        <button onClick={() => navigate('/edit-patient')} class="nes-btn is-warning is-small" > 
                             Go edit profile
                         </button>
                 </div>
@@ -22,6 +22,7 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
         }
     }
 
+
     const textShow = () => {
         if (textBubble === null && avatar === null) {
             console.log('hey')
@@ -29,7 +30,7 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
                 <div>
                     <p>Hey {name}!</p>
                     <p>Set your reminder buddy</p>
-                    <button onClick={() => navigate('/edit-patient')} class="nes-btn is-success is-small" > 
+                    <button onClick={() => navigate('/edit-patient')} class="nes-btn is-warning is-small" > 
                     Go edit profile
                     </button>
                 </div>
@@ -48,7 +49,9 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
                             <i class="nes-icon is-small star"></i>
                             <i class="nes-icon is-small star"></i>
                         </p>
-                        <p className='bubble-text'>I'm your reminder buddy!</p>
+                        <p className='bubble-text'>Dont forget to take</p>
+                        <p className='bubble-text'>your medicine.</p>
+                    <i class="nes-icon is-medium like"></i>
                     <i class="nes-icon is-medium like"></i>
                     </div>  
                 </div>
@@ -60,9 +63,9 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
                 <div>
                     <div style={{ color: 'green'}}class="nes-balloon from-right">Good Job {name}!
                     <br></br>
-                        <button onClick={() => setTextBubble(null)} class="nes-btn is-success is-small" > 
+                        <button onClick={() => window.location.reload()} class="nes-btn is-success is-small" > 
                             <i class="nes-icon coin is-small"></i>
-                                Thanks! 
+                                Restart Timer 
                             <i class="nes-icon coin is-small"></i>
                         </button>
                     </div>
@@ -78,21 +81,21 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
                         <i class="nes-icon is-small star"></i>
                         <i class="nes-icon is-small star"></i>
                         <i class="nes-icon is-small star"></i>
-                            Hello {name}!
+                            Hey {name}!
                         <i class="nes-icon is-small star"></i>
                         <i class="nes-icon is-small star"></i>
                         <i class="nes-icon is-small star"></i>
                     </p>
-                            <p className='bubble-text'>Youre out of a</p>
-                    <button onClick={() => setTextBubble(null)} class="nes-btn is-success is-small" > 
-                        <i class="nes-icon coin is-small"></i>
-                            Thanks! 
-                        <i class="nes-icon coin is-small"></i>
+                            <p className='bubble-text'>Youre out of Medicine </p>
+                    <button onClick={() => window.location.reload()} class="nes-btn is-error is-small" > 
+                        <i class="nes-icon close is-small"/>
+                            OK!
+                        <i class="nes-icon close is-small"/>
                     </button>
                 </div>  
             </div>
         )
-    }
+    }   
 }
 
 
@@ -110,10 +113,13 @@ const Patients = ({patient, textBubble, setTextBubble}) => {
                                     {imageBox()}
                                 </th>
                                 <th>
-                                    <h2 >Name:{name}</h2>
-                                    <h2>Username:{username}</h2>
-                                    <h2>points:{points}</h2>
-                                    <h2>level:{level}</h2>
+                                    <h2 style={{ color: 'yellow' }}>Name:{name}</h2>
+                                        <br></br>
+                                    <h2 style={{ color: 'lime' }}>Username:{username}</h2>
+                                        <br></br>
+                                    <h2 style={{ color: 'magenta' }}>Score:{points}</h2>
+                                        <br></br>
+                                    <h2 style={{ color: 'cyan' }}>Level:{level}</h2>
                                 </th>
                                 <th>
                                     {textShow()}

@@ -93,18 +93,16 @@ html {
 
 .nav-bar {
   align-items: center;
-
 }
 
 .add-doctor {
-
   min-height: 100vh;
   position: static;
   background-image: url("https://i.gifer.com/5Kcu.gif"); 
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: 0px -60vh;
 }
 
 .add-doctor-container {

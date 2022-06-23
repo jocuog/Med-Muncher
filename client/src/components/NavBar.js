@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-const NavBar = ({ setPatient, patient, setDoctors, doctors }) => {
+const NavBar = ({ setPatient }) => {
 
     let navigate = useNavigate();
 
