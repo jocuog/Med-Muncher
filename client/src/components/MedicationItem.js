@@ -65,7 +65,7 @@ const MedicationItem = ({ medications, patient, setTextBubble, onUpdateScore, on
                         <br></br>
                         {instructions}
                         <br></br>
-                        - Dr. {medications.doctor.name}
+                        -{medications.doctor.name}
                         <br></br>
 
                         <button class="nes-btn is-success is-small" onClick={handleCompleteCount}>

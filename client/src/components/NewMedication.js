@@ -13,7 +13,6 @@ const NewMedication = ({ patient })=> {
         frequency: 0,
         instructions: "",
         initial_amount: 0,
-        refills: 0,
         fill_date: 0,
         refill_date: 0
 
@@ -112,7 +111,7 @@ const NewMedication = ({ patient })=> {
                                 </div>    
                         
                                 <div>
-                                <label className="form-text" htmlFor="frequency" >Frequency</label>
+                                <label className="form-text" htmlFor="frequency" >Frequency(Days)</label>
                                 <br></br>
                                     <input
                                         class="nes-input is-success"
